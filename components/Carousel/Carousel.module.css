@@ -1,0 +1,23 @@
+.carousel-item {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.carousel-caption h3,
+.carousel-caption p {
+  color: white;
+}

@@ -1,6 +1,7 @@
 import { Container, Grid, Heading } from "@chakra-ui/react";
 import CategoryButtons from "components/etalase/CategoryButtons";
 import ProductCard from "components/etalase/ProductCard";
+import { motion } from "framer-motion";
 import { NextPage } from "next";
 import { useState } from "react";
 
@@ -43,7 +44,15 @@ const Etalase: NextPage = () => {
                 gap="6"
             >
                 {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} id={product.id} title={product.title} imageUrl={product.imageUrl} />
+                    <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <ProductCard id={product.id} title={product.title} imageUrl={product.imageUrl} />
+                    </motion.div>
                 ))}
             </Grid>
         </Container>

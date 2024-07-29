@@ -2,14 +2,14 @@ import { Box, Heading, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 
 interface ProductCardProps {
+    id: string;
     title: string;
     imageUrl: string;
-    category: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ title, imageUrl, category }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ id, title, imageUrl }) => {
     return (
-        <Link href={`/etalase?category=${encodeURIComponent(category)}`} passHref>
+        <Link href={`/produk/${id}`} passHref>
             <Box
                 borderWidth="1px"
                 borderRadius="md"

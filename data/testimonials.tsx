@@ -1,5 +1,5 @@
 export default {
-  title: 'Loved by tech people',
+  title: 'kata kata hari ini ',
   items: [
     {
       name: 'Eelco Wiersma',

@@ -12,11 +12,6 @@ import {
   VStack,
   Wrap
 } from "@chakra-ui/react";
-import { SEO } from "components/seo/seo";
-import type { NextPage } from "next";
-import Image from "next/image";
-import * as React from "react";
-
 import { Br } from "@saas-ui/react";
 import Carousel from "components/Carousel/Carousel";
 import { ButtonLink } from "components/button-link/button-link";
@@ -26,15 +21,18 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Hero } from "components/hero";
 import {
   Highlights,
-  HighlightsItem,
-  HighlightsTestimonialItem,
+  HighlightsItem
 } from "components/highlights";
 import { ChakraLogo, NextjsLogo } from "components/logos";
-import { FallInPlace } from "components/motion/fall-in-place";
+import { SEO } from "components/seo/seo";
 import { Testimonial, Testimonials } from "components/testimonials";
 import faq from "data/faq";
 import testimonials from "data/testimonials";
-import { useRouter } from 'next/router'; // Import useRouter
+import { motion } from "framer-motion";
+import type { NextPage } from "next";
+import Image from "next/image";
+import { useRouter } from 'next/router';
+import * as React from "react";
 import {
   FiArrowRight,
   FiBox,
@@ -52,6 +50,7 @@ import {
   FiUserPlus
 } from "react-icons/fi";
 import EtalaseHome from "./EtalaseHome";
+
 const Home: NextPage = () => {
   return (
     <Box>
@@ -84,18 +83,31 @@ const HeroSection: React.FC = () => {
             justifyContent="flex-start"
             px="0"
             title={
-              <FallInPlace>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 2.5 }}
+              >
                 Selamat Datang di <span style={{ color: "#d9232d" }}>Kementerian Perdagangan</span>
-              </FallInPlace>
+              </motion.div>
             }
             description={
-              <FallInPlace delay={0.4} fontWeight="medium">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 2.5 }}
+                style={{ fontWeight: "medium" }}
+              >
                 Kami adalah lembaga pemerintah yang bertanggung jawab atas pengelolaan perdagangan, kebijakan, dan pengembangan sektor perdagangan di Indonesia. <Br />
                 Temukan informasi terkini tentang kebijakan, layanan publik, dan program-program kami di sini.
-              </FallInPlace>
+              </motion.div>
             }
           >
-            <FallInPlace delay={0.8}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+            >
               <HStack pt="4" pb="12" spacing="8">
                 <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
               </HStack>
@@ -106,7 +118,7 @@ const HeroSection: React.FC = () => {
                 </ButtonLink>
                 <ButtonLink
                   size="lg"
-                  href="https://demo.saas-ui.dev"
+                  href="https://webpas.my.id"
                   variant="outline"
                   rightIcon={
                     <Icon
@@ -124,7 +136,7 @@ const HeroSection: React.FC = () => {
                   Hubungi Kami
                 </ButtonLink>
               </ButtonGroup>
-            </FallInPlace>
+            </motion.div>
           </Hero>
           <Box
             height="600px"
@@ -135,7 +147,11 @@ const HeroSection: React.FC = () => {
             maxW="1100px"
             margin="0 auto"
           >
-            <FallInPlace delay={1}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 2.5 }}
+            >
               <Box overflow="hidden" height="100%">
                 <Image
                   src="/okm.png"
@@ -147,72 +163,62 @@ const HeroSection: React.FC = () => {
                   priority
                 />
               </Box>
-            </FallInPlace>
+            </motion.div>
           </Box>
         </Stack>
       </Container>
 
-      <Features
-        id="benefits"
-        columns={[1, 2, 4]}
-        iconSize={4}
-        innerWidth="container.xl"
-        pt="10"
-        features={[
-          {
-            title: "Kebijakan Terbaru",
-            icon: FiSmile,
-            description: "Dapatkan informasi terkini mengenai kebijakan perdagangan dan regulasi dari Kementerian Perdagangan.",
-            iconPosition: "left",
-            delay: 0.6,
-          },
-          {
-            title: "Layanan Publik",
-            icon: FiSliders,
-            description:
-              "Akses berbagai layanan publik yang disediakan oleh Kementerian Perdagangan untuk mempermudah proses administrasi.",
-            iconPosition: "left",
-            delay: 0.8,
-          },
-          {
-            title: "Program Pemerintah",
-            icon: FiGrid,
-            description:
-              "Ikuti program-program pemerintah yang ditawarkan untuk mendukung pengembangan sektor perdagangan dan industri.",
-            iconPosition: "left",
-            delay: 1,
-          },
-          {
-            title: "Pengembangan Sektor",
-            icon: FiThumbsUp,
-            description:
-              "Temukan informasi tentang upaya Kementerian Perdagangan dalam mengembangkan sektor perdagangan di Indonesia.",
-            iconPosition: "left",
-            delay: 1.1,
-          },
-        ]}
-        reveal={FallInPlace}
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        <Features
+          id="benefits"
+          columns={[1, 2, 4]}
+          iconSize={4}
+          innerWidth="container.xl"
+          pt="10"
+          features={[
+            {
+              title: "Kebijakan Terbaru",
+              icon: FiSmile,
+              description: "Dapatkan informasi terkini mengenai kebijakan perdagangan dan regulasi dari Kementerian Perdagangan.",
+              iconPosition: "left",
+              delay: 0.6,
+            },
+            {
+              title: "Layanan Publik",
+              icon: FiSliders,
+              description:
+                "Akses berbagai layanan publik yang disediakan oleh Kementerian Perdagangan untuk mempermudah proses administrasi.",
+              iconPosition: "left",
+              delay: 0.8,
+            },
+            {
+              title: "Program Pemerintah",
+              icon: FiGrid,
+              description:
+                "Ikuti program-program pemerintah yang ditawarkan untuk mendukung pengembangan sektor perdagangan dan industri.",
+              iconPosition: "left",
+              delay: 1,
+            },
+            {
+              title: "Pengembangan Sektor",
+              icon: FiThumbsUp,
+              description:
+                "Temukan informasi tentang upaya Kementerian Perdagangan dalam mengembangkan sektor perdagangan di Indonesia.",
+              iconPosition: "left",
+              delay: 1.1,
+            },
+          ]}
+          reveal={motion.div}
+        />
+      </motion.div>
     </Box>
   );
 };
 <EtalaseHome />
-// const Mentri = () => {
-//   return (
-//     <Highlights>
-//       <HighlightsItem colSpan={[1, null, 2]} title="Profil Menteri Perdagangan">
-//         <VStack alignItems="flex-start" spacing="12" pb="">
-//           <HStack spacing="8">
-//             <Image src="/mentri.png" alt="Profil Menteri Perdagangan" width={200} height={200} />
-//             <Text color="muted" fontSize="xl">
-//               DR. (H.C). Zulkifli Hasan, S.E., M.M. yang akrab disapa Bang Zul dilantik sebagai Menteri Perdagangan Republik Indonesia pada 15 Juni 2022 oleh Presiden Joko Widodo. Sebelum dilantik, ia menjabat sebagai Wakil Ketua MPR periode 2019 hingga 2022. Sebelumnya, ia juga menjabat sebagai Ketua MPR periode 2014 hingga 2019.
-//             </Text>
-//           </HStack>
-//         </VStack>
-//       </HighlightsItem>
-//     </Highlights>
-//   )
-// }
 const HighlightsSection = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const router = useRouter(); // Initialize useRouter
@@ -223,10 +229,12 @@ const HighlightsSection = () => {
 
   return (
     <Highlights>
-      <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM">
+      <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM" style={{ opacity: 1, transform: "translateY(50px)" }}>
         <VStack alignItems="flex-start" spacing="8">
-          <HStack spacing="15">
-            <Image src="/okm.png" alt="Etalase Produk UMKM" width={350} height={200} />
+          <HStack spacing="15" display={{ base: "block", md: "flex" }}>
+            <Box display={{ base: "none", md: "block" }}>
+              <Image src="/okm.png" alt="Etalase Produk UMKM" width={350} height={200} />
+            </Box>
             <Text color="muted" fontSize="xl" text-align="center">
               Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang
               <br />berkeinginan untuk mempromosikan produknya melalui Internet.
@@ -243,31 +251,6 @@ const HighlightsSection = () => {
           </Box>
         </VStack>
       </HighlightsItem>
-
-      <HighlightsTestimonialItem
-        name="FAQ"
-        description="FREQUENTLY ASKED QUESTIONS"
-        avatar="/static/images/avatar.jpg"
-        gradient={["pink.200", "purple.500"]}
-      >
-        Silakan buka halaman berikut  Bagaimana cara mendaftarkan produk? Silakan buka halaman berikut Bagaimana cara mendaftarkan  Bagaimana cara mendaftarkan produk? Silakan buka halaman berikut
-      </HighlightsTestimonialItem>
-      <HighlightsTestimonialItem
-        name="Renata Alink"
-        description="Founder"
-        avatar="/static/images/avatar.jpg"
-        gradient={["pink.200", "purple.500"]}
-      >
-        UKM Pangan Award mengakui usaha kecil dan menengah yang luar biasa dalam berbagai kategori. Jelajahi berbagai kategori dan temukan keunggulan di setiap bidang:
-      </HighlightsTestimonialItem>
-      <HighlightsTestimonialItem
-        name="Renata Alink"
-        description="Founder"
-        avatar="/static/images/avatar.jpg"
-        gradient={["pink.200", "purple.500"]}
-      >
-        UKM Pangan Award mengakui usaha kecil dan menengah yang luar biasa dalam berbagai kategori. Jelajahi berbagai kategori dan temukan keunggulan di setiap bidang:
-      </HighlightsTestimonialItem>
       <HighlightsItem colSpan={[1, 2, 3]} title="Kategori UKM Pangan Award">
         <Box width="100%" p={4}>
           <Text
@@ -329,8 +312,7 @@ const FeaturesSection = () => {
           textAlign="left"
           as="p"
         >
-          Jadwal
-          <Br /> Kegiatan
+          Jadwal Kegiatan
         </Heading>
       }
       description={

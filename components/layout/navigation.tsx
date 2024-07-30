@@ -1,5 +1,5 @@
-import * as React from "react";
 import { HStack } from "@chakra-ui/react";
+import * as React from "react";
 
 import { useRouter } from "next/router";
 
@@ -9,9 +9,8 @@ import { NavLink } from "components/nav-link";
 
 import { useScrollSpy } from "hooks/use-scrollspy";
 
-import { MobileNavButton } from "components/mobile-nav";
-import { MobileNavContent } from "components/mobile-nav";
 import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
+import { MobileNavButton, MobileNavContent } from "components/mobile-nav";
 
 import ThemeToggle from "./theme-toggle";
 

@@ -17,49 +17,57 @@ const siteConfig = {
       {
         label: 'Home',
         href: '/',
+        id: 'home',
       },
       {
         label: 'Etalase',
         href: '/etalase',
+        id: 'etalase',
       },
       {
         label: 'Pelaku usaha',
         href: '/PelakuUsaha',
+        id: 'pelaku-usaha',
       },
       {
         label: 'Login',
         href: '/login',
+        id: 'login',
       },
       {
         label: 'Contact Us',
         href: '/Contact-Us',
+        id: 'contact-us',
       },
       {
         label: 'Sign Up',
         href: '/signup',
         variant: 'primary',
+        id: 'sign-up',
       },
     ],
   },
   footer: {
     copyright: (
       <>
-        Built by{' '}
-        <Link href="https://webpas.my.id">Webpass</Link>
+        Built by <Link href="https://webpas.my.id">Webpass</Link>
       </>
     ),
     links: [
       {
         href: '',
         label: 'Contact',
+        id: 'footer-contact',
       },
       {
         href: '',
         label: <FaTwitter size="14" />,
+        id: 'footer-twitter',
       },
       {
         href: 'https://',
         label: <FaGithub size="14" />,
+        id: 'footer-github',
       },
     ],
   },
@@ -70,24 +78,25 @@ const siteConfig = {
         icon: FiCheck,
         title: 'Accessible',
         description: 'All webpass.',
+        id: 'feature-accessible',
       },
       {
         icon: FiCheck,
         title: 'Themable',
-        description:
-          'webpass.',
+        description: 'webpass.',
+        id: 'feature-themable',
       },
       {
         icon: FiCheck,
         title: 'Composable',
-        description:
-          'webpass.',
+        description: 'webpass.',
+        id: 'feature-composable',
       },
       {
         icon: FiCheck,
         title: 'Productive',
-        description:
-          'webpass.',
+        description: 'webpass.',
+        id: 'feature-productive',
       },
     ],
   },

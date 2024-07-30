@@ -61,7 +61,6 @@ const Home: NextPage = () => {
       <Box>
         <Carousel />
         <HeroSection />
-        {/* <Mentri /> */}
         <EtalaseHome />
         <HighlightsSection />
         <FeaturesSection />

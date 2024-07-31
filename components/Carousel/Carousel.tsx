@@ -20,7 +20,7 @@ const Carousel: React.FC = () => {
                     />
                     <BootstrapCarousel.Caption className={styles.caption}>
                         <h3>Etalase Produk UMKM</h3>
-                        <p>Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang berkeinginan untuk mempromosikan produknya melalui internet. Registrasi dilakukan oleh pelaku usaha sendiri tanpa di pungut bayaran.</p>
+                        <p className="d-none d-md-block">Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang berkeinginan untuk mempromosikan produknya melalui internet. Registrasi dilakukan oleh pelaku usaha sendiri tanpa di pungut bayaran.</p>
                     </BootstrapCarousel.Caption>
                 </BootstrapCarousel.Item>
                 <BootstrapCarousel.Item>
@@ -33,7 +33,7 @@ const Carousel: React.FC = () => {
                     />
                     <BootstrapCarousel.Caption className={styles.caption}>
                         <h3>Second Slide</h3>
-                        <p>Some description for the second slide.</p>
+                        <p className="d-none d-md-block">Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang berkeinginan untuk mempromosikan produknya melalui internet. Registrasi dilakukan oleh pelaku usaha sendiri tanpa di pungut bayaran.</p>
                     </BootstrapCarousel.Caption>
                 </BootstrapCarousel.Item>
                 <BootstrapCarousel.Item>
@@ -46,7 +46,7 @@ const Carousel: React.FC = () => {
                     />
                     <BootstrapCarousel.Caption className={styles.caption}>
                         <h3>Third Slide</h3>
-                        <p>Some description for the third slide.</p>
+                        <p className="d-none d-md-block">Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang berkeinginan untuk mempromosikan produknya melalui internet. Registrasi dilakukan oleh pelaku usaha sendiri tanpa di pungut bayaran.</p>
                     </BootstrapCarousel.Caption>
                 </BootstrapCarousel.Item>
             </BootstrapCarousel>

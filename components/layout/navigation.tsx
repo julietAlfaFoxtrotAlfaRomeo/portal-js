@@ -12,8 +12,6 @@ import { useScrollSpy } from "hooks/use-scrollspy";
 import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { MobileNavButton, MobileNavContent } from "components/mobile-nav";
 
-import ThemeToggle from "./theme-toggle";
-
 const Navigation: React.FC = () => {
   const mobileNav = useDisclosure();
   const router = useRouter();
@@ -52,8 +50,6 @@ const Navigation: React.FC = () => {
           </NavLink>
         );
       })}
-
-      <ThemeToggle />
 
       <MobileNavButton
         ref={mobileNavBtnRef}

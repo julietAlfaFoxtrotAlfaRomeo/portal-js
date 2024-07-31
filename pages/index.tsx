@@ -228,7 +228,7 @@ const HighlightsSection = () => {
 
   return (
     <Highlights>
-      <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM" style={{ opacity: 1, transform: "translateY(50px)" }}>
+      <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM">
         <VStack alignItems="flex-start" spacing="8">
           <HStack spacing="15" display={{ base: "block", md: "flex" }}>
             <Box display={{ base: "none", md: "block" }}>

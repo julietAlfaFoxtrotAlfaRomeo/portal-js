@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Tag, Wrap } from '@chakra-ui/react';
 
 interface CategoryButtonsProps {
     selectedCategory: string;
@@ -15,23 +15,34 @@ const categories = [
     'JASA',
     'DEKORASI',
     'AKSESORIS',
-    'MULTIPRODUK'
+    'MULTIPRODUK',
 ];
 
 const CategoryButtons: React.FC<CategoryButtonsProps> = ({ selectedCategory, handleCategoryChange }) => {
     return (
-        <ButtonGroup mb="6" spacing="4">
+        <Wrap
+            mt={4}
+            justify="center"
+            spacing="4"
+        >
             {categories.map(category => (
-                <Button
+                <Tag
                     key={category}
-                    onClick={() => handleCategoryChange(category)}
+                    variant="subtle"
                     colorScheme={selectedCategory === category ? 'purple' : 'gray'}
-                    size="sm"
+                    rounded="full"
+                    px="3"
+                    py="1.5"
+                    cursor="pointer"
+                    transition="all 0.3s ease"
+                    _hover={{ bg: "purple.200", transform: "scale(1.05)" }}
+                    _active={{ bg: "purple.300" }}
+                    onClick={() => handleCategoryChange(category)}
                 >
                     {category}
-                </Button>
+                </Tag>
             ))}
-        </ButtonGroup>
+        </Wrap>
     );
 };
 

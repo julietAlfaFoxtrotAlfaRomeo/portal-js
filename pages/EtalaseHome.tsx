@@ -36,7 +36,7 @@ const Etalase: NextPage = () => {
         : products.filter(product => product.category === selectedCategory);
 
     return (
-        <Container maxW="container.xl" py="8" mt="20">
+        <Container maxW={{ base: "container.sm", md: "container.md", lg: "container.xl" }} py="8" mt="20">
             <Heading mb="6">Etalase Produk</Heading>
             <CategoryButtons selectedCategory={selectedCategory} handleCategoryChange={handleCategoryChange} />
             <Grid

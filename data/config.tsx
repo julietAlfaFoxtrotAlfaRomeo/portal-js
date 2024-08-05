@@ -25,19 +25,29 @@ const siteConfig = {
         id: 'etalase',
       },
       {
+        label: 'Berita',
+        href: '/berita',
+        id: 'Berita',
+      },
+      {
+        label: 'Jadwal',
+        href: '/jadwal',
+        id: 'Jadwal',
+      },
+      {
         label: 'Pelaku usaha',
         href: '/PelakuUsaha',
         id: 'pelaku-usaha',
       },
       {
-        label: 'Login',
-        href: '/login',
-        id: 'login',
-      },
-      {
         label: 'Contact Us',
         href: '/Contact-Us',
         id: 'contact-us',
+      },
+      {
+        label: 'Login',
+        href: '/login',
+        id: 'login',
       },
       {
         label: 'Sign Up',
@@ -50,7 +60,7 @@ const siteConfig = {
   footer: {
     copyright: (
       <>
-        Built by <Link href="https://webpas.my.id">Webpass</Link>
+        Built by <Link href="https://webpas.my.id">Jafar</Link>
       </>
     ),
     links: [

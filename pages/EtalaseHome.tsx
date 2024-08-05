@@ -1,4 +1,4 @@
-import { Container, Grid, Heading } from "@chakra-ui/react";
+import { Button, Center, Container, Grid, Heading, Link } from "@chakra-ui/react";
 import CategoryButtons from "components/etalase/CategoryButtons";
 import ProductCard from "components/etalase/ProductCard";
 import { motion } from "framer-motion";
@@ -55,6 +55,11 @@ const Etalase: NextPage = () => {
                     </motion.div>
                 ))}
             </Grid>
+            <Center mt="10">
+                <Link href="/etalase">
+                    <Button colorScheme="primary" size="lg">Lihat Selanjutnya</Button>
+                </Link>
+            </Center>
         </Container>
     );
 };

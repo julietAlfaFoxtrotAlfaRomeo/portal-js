@@ -5,6 +5,7 @@ import {
   Heading,
   HStack,
   Icon,
+  SimpleGrid,
   Stack,
   Tag,
   Text,
@@ -13,6 +14,8 @@ import {
   Wrap
 } from "@chakra-ui/react";
 import { Br } from "@saas-ui/react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Carousel from "components/Carousel/Carousel";
 import { ButtonLink } from "components/button-link/button-link";
 import { Faq } from "components/faq";
@@ -25,33 +28,28 @@ import {
 } from "components/highlights";
 import { ChakraLogo, NextjsLogo } from "components/logos";
 import { SEO } from "components/seo/seo";
-import { Testimonial, Testimonials } from "components/testimonials";
 import faq from "data/faq";
-import testimonials from "data/testimonials";
-import { motion } from "framer-motion";
+import jadwal from "data/jadwal";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 import * as React from "react";
+import { useEffect } from 'react';
 import {
   FiArrowRight,
-  FiBox,
-  FiCode,
-  FiFlag,
   FiGrid,
-  FiLock,
-  FiSearch,
   FiSliders,
   FiSmile,
-  FiTerminal,
   FiThumbsUp,
-  FiToggleLeft,
-  FiTrendingUp,
-  FiUserPlus
 } from "react-icons/fi";
 import EtalaseHome from "./EtalaseHome";
 
+
 const Home: NextPage = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <Box>
       <SEO
@@ -64,16 +62,18 @@ const Home: NextPage = () => {
         <EtalaseHome />
         <HighlightsSection />
         <FeaturesSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
+        <UkmAwardSection />
         <FaqSection />
       </Box>
     </Box>
   );
 };
 
+
 const HeroSection: React.FC = () => {
   return (
-    <Box position="relative" overflow="hidden">
+    <Box position="relative" overflow="hidden" data-aos="fade-up">
       <BackgroundGradient height="100%" zIndex="-1" />
       <Container maxW="container.xl" pt={{ base: 10, lg: 20 }} pb="5">
         <Stack direction={{ base: "column", lg: "row" }} alignItems="center">
@@ -82,31 +82,18 @@ const HeroSection: React.FC = () => {
             justifyContent="flex-start"
             px="0"
             title={
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 2.5 }}
-              >
+              <div data-aos="fade-right" data-aos-delay="250">
                 Selamat Datang di <span style={{ color: "#d9232d" }}>Kementerian Perdagangan</span>
-              </motion.div>
+              </div>
             }
             description={
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 2.5 }}
-                style={{ fontWeight: "medium" }}
-              >
+              <div data-aos="fade-right" data-aos-delay="500">
                 Kami adalah lembaga pemerintah yang bertanggung jawab atas pengelolaan perdagangan, kebijakan, dan pengembangan sektor perdagangan di Indonesia. <Br />
                 Temukan informasi terkini tentang kebijakan, layanan publik, dan program-program kami di sini.
-              </motion.div>
+              </div>
             }
           >
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-            >
+            <div data-aos="fade-up" data-aos-delay="750">
               <HStack pt="4" pb="12" spacing="8">
                 <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
               </HStack>
@@ -135,7 +122,7 @@ const HeroSection: React.FC = () => {
                   Hubungi Kami
                 </ButtonLink>
               </ButtonGroup>
-            </motion.div>
+            </div>
           </Hero>
           <Box
             height="600px"
@@ -145,33 +132,25 @@ const HeroSection: React.FC = () => {
             width="80vw"
             maxW="1100px"
             margin="0 auto"
+            data-aos="fade-left"
+            data-aos-delay="1000"
           >
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 2.5 }}
-            >
-              <Box overflow="hidden" height="100%">
-                <Image
-                  src="/okm.png"
-                  layout="fixed"
-                  width={500}
-                  height={762}
-                  alt="Screenshot of Kementerian Perdagangan"
-                  quality="75"
-                  priority
-                />
-              </Box>
-            </motion.div>
+            <Box overflow="hidden" height="100%">
+              <Image
+                src="/okm.png"
+                layout="fixed"
+                width={500}
+                height={762}
+                alt="Screenshot of Kementerian Perdagangan"
+                quality="75"
+                priority
+              />
+            </Box>
           </Box>
         </Stack>
       </Container>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2 }}
-      >
+      <div>
         <Features
           id="benefits"
           columns={[1, 2, 4]}
@@ -184,7 +163,6 @@ const HeroSection: React.FC = () => {
               icon: FiSmile,
               description: "Dapatkan informasi terkini mengenai kebijakan perdagangan dan regulasi dari Kementerian Perdagangan.",
               iconPosition: "left",
-              delay: 0.6,
             },
             {
               title: "Layanan Publik",
@@ -192,7 +170,6 @@ const HeroSection: React.FC = () => {
               description:
                 "Akses berbagai layanan publik yang disediakan oleh Kementerian Perdagangan untuk mempermudah proses administrasi.",
               iconPosition: "left",
-              delay: 0.8,
             },
             {
               title: "Program Pemerintah",
@@ -200,7 +177,6 @@ const HeroSection: React.FC = () => {
               description:
                 "Ikuti program-program pemerintah yang ditawarkan untuk mendukung pengembangan sektor perdagangan dan industri.",
               iconPosition: "left",
-              delay: 1,
             },
             {
               title: "Pengembangan Sektor",
@@ -208,12 +184,12 @@ const HeroSection: React.FC = () => {
               description:
                 "Temukan informasi tentang upaya Kementerian Perdagangan dalam mengembangkan sektor perdagangan di Indonesia.",
               iconPosition: "left",
-              delay: 1.1,
             },
           ]}
-          reveal={motion.div}
+          data-aos="fade-left"
+          data-aos-delay="800"
         />
-      </motion.div>
+      </div>
     </Box>
   );
 };
@@ -227,12 +203,12 @@ const HighlightsSection = () => {
   };
 
   return (
-    <Highlights>
+    <Highlights data-aos="fade-up" data-aos-delay="200">
       <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM">
         <VStack alignItems="flex-start" spacing="8">
-          <HStack spacing="15" display={{ base: "block", md: "flex" }}>
+          <HStack spacing="15" display={{ base: "block", md: "flex" }} data-aos="zoom-in">
             <Box display={{ base: "none", md: "block" }}>
-              <Image src="/okm.png" alt="Etalase Produk UMKM" width={350} height={200} />
+              <Image src="/100.png" alt="Etalase Produk UMKM" width={500} height={150} />
             </Box>
             <Text color="muted" fontSize="xl" text-align="center">
               Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang
@@ -240,17 +216,24 @@ const HighlightsSection = () => {
               <br />Registrasi dilakukan oleh Pelaku usaha sendiri tanpa dipungut bayaran.
             </Text>
           </HStack>
-          <Box display="flex" justifyContent="flex-end" gap="3" width="100%">
-            <ButtonLink colorScheme="primary" size="lg" href="/signup">
-              Daftar
+          <Box
+            display="flex"
+            justifyContent={{ base: "flex-start", md: "flex-end" }}
+            gap="3"
+            width="100%"
+            mr={{ base: "10", md: "0" }}
+            data-aos="zoom-in"
+          >
+            <ButtonLink colorScheme="primary" size={{ base: "sm", md: "lg" }} href="/berita/2">
+              Baca Selengkapnya
             </ButtonLink>
-            <ButtonLink colorScheme="secondary" size="lg" href="/signup">
-              Daftar
+            <ButtonLink colorScheme="secondary" size={{ base: "sm", md: "lg" }} href="/berita">
+              List Berita
             </ButtonLink>
           </Box>
         </VStack>
       </HighlightsItem>
-      <HighlightsItem colSpan={[1, 2, 3]} title="Kategori UKM Pangan Award">
+      <HighlightsItem colSpan={[1, 2, 3]} title="Kategori UKM Pangan Award" data-aos="fade-up" data-aos-delay="200">
         <Box width="100%" p={4}>
           <Text
             color="muted"
@@ -287,6 +270,8 @@ const HighlightsSection = () => {
                 _hover={{ bg: "purple.200", transform: "scale(1.05)" }}
                 _active={{ bg: "purple.300" }}
                 onClick={() => handleTagClick(value)}
+                data-aos="flip-up"
+                data-aos-delay="200"
               >
                 {value}
               </Tag>
@@ -300,178 +285,150 @@ const HighlightsSection = () => {
   );
 };
 
+
 const FeaturesSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500, // Durasi animasi
+      offset: 200, // Offset (dalam px) dari titik pemicu asli
+    });
+  }, []);
+
+  const layoutConfig = {
+    columns: [1, 2, 3],
+    iconSize: 5,
+    gap: 5,
+  };
+
+  // Ambil 6 acara terbaru dari data jadwal
+  const latestFeatures = jadwal.slice(0, 6).map(feature => ({
+    ...feature,
+    icon: feature.icon as React.ElementType // Pastikan icon adalah tipe yang benar
+  }));
+
   return (
-    <Features
-      id="features"
-      title={
-        <Heading
-          lineHeight="short"
-          fontSize={["2xl", null, "4xl"]}
-          textAlign="left"
-          as="p"
-        >
-          Jadwal Kegiatan
-        </Heading>
-      }
-      description={
-        <>
-          Berikut adalah jadwal kegiatan dan publikasi yang akan datang.
-          <Br />
-          Untuk informasi lebih lanjut, lihat detail di bawah ini.
-        </>
-      }
-      align="left"
-      columns={[1, 2, 3]}
-      iconSize={4}
-      features={[
-        {
-          title: "13th Jakarta International Jewellery Fair",
-          icon: FiBox,
-          description: "Penyelenggara: Asosiasi Pengusaha Emas dan Permata Indonesia. Waktu Kegiatan: 18 August 2022 - 21 August 2022.",
-          variant: "inline",
-        },
-        {
-          title: "8th Jogja Expo 2022",
-          icon: FiLock,
-          description: "Penyelenggara: Pemerintah Kota Yogyakarta. Waktu Kegiatan: 25 August 2022 - 28 August 2022.",
-          variant: "inline",
-        },
-        {
-          title: "Health Expo 2022",
-          icon: FiSearch,
-          description: "Penyelenggara: Palang Merah Indonesia (PMI) Jawa Tengah. Waktu Kegiatan: 14 September 2022 - 18 September 2022.",
-          variant: "inline",
-        },
-        {
-          title: "Kriyanusa",
-          icon: FiUserPlus,
-          description: "Penyelenggara: Dewan Kerajinan Nasional. Waktu Kegiatan: 21 September 2022 - 25 September 2022.",
-          variant: "inline",
-        },
-        {
-          title: "Sail Tidore Expo 2022",
-          icon: FiFlag,
-          description: "Penyelenggara: Kementerian / Lembaga RI. Waktu Kegiatan: 24 November 2022 - 29 November 2022.",
-          variant: "inline",
-        },
-        {
-          title: "14th Jakarta International Jewellery Fair",
-          icon: FiTrendingUp,
-          description: "Penyelenggara: Asosiasi Pengusaha Emas dan Permata Indonesia. Waktu Kegiatan: 16 February 2023 - 19 February 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Inacraft 2023",
-          icon: FiToggleLeft,
-          description: "Penyelenggara: Asosiasi Eksportir dan Produsen Handicraft Indonesia. Waktu Kegiatan: 01 March 2023 - 05 March 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Festival Kab. Semarang UKM Expo 2023",
-          icon: FiTerminal,
-          description: "Penyelenggara: Pemerintah Kabupaten Semarang. Waktu Kegiatan: 15 March 2023 - 19 March 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Deep and Extreme Indonesia",
-          icon: FiCode,
-          description: "Penyelenggara: PT Exhibition Network Indonesia. Waktu Kegiatan: 01 June 2023 - 04 June 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Kebumen International Expo 2023",
-          icon: FiBox,
-          description: "Penyelenggara: Pemkab Kebumen, Jawa Tengah. Waktu Kegiatan: 17 June 2023 - 24 June 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Pameran Hari Keluarga Nasional",
-          icon: FiLock,
-          description: "Penyelenggara: BKKBN. Waktu Kegiatan: 04 July 2023 - 06 July 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Festival Indonesia: Pesta Anak Bangsa",
-          icon: FiSearch,
-          description: "Penyelenggara: idEA. Waktu Kegiatan: 08 July 2023 - 09 July 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Indonesia City Expo 2023 (Rakernas APEKSI)",
-          icon: FiUserPlus,
-          description: "Penyelenggara: APEKSI. Waktu Kegiatan: 12 July 2023 - 14 July 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Hari UMKM Nasional Expo 2023",
-          icon: FiFlag,
-          description: "Penyelenggara: Pemkot Surakarta. Waktu Kegiatan: 10 August 2023 - 13 August 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Partisipasi Pameran TEI 2023 Pada Hall 3A",
-          icon: FiTrendingUp,
-          description: "Penyelenggara: Kemendag. Waktu Kegiatan: 18 October 2023 - 22 October 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Muhammadiyah Expo 3 Jogja 2023",
-          icon: FiToggleLeft,
-          description: "Penyelenggara: Muhammadiyah. Waktu Kegiatan: 24 November 2023 - 26 November 2023.",
-          variant: "inline",
-        },
-        {
-          title: "Inacraft 2024",
-          icon: FiTerminal,
-          description: "Penyelenggara: Asosiasi Eksportir dan Produsen Handicraft Indonesia. Waktu Kegiatan: 28 February 2024 - 03 March 2024.",
-          variant: "inline",
-        },
-        {
-          title: "Kegiatan Baru",
-          icon: FiCode,
-          description: "Penyelenggara: Kemendag. Waktu Kegiatan: 09 May 2024 - 09 May 2024.",
-          variant: "inline",
-        },
-        {
-          title: "MUFEST (Muslim Fashion Festival) 2024",
-          icon: FiBox,
-          description: "Penyelenggara: Gemalindo. Waktu Kegiatan: 08 August 2024 - 11 August 2024.",
-          variant: "inline",
-        },
-      ]}
-    />
+    <Box id="features" p={5} className="primary">
+      <Heading
+        lineHeight="short"
+        fontSize={["2xl", null, "4xl"]}
+        textAlign="center"
+        as="p"
+        data-aos="fade-right"
+        className="primary-heading"
+        mt={5}
+      >
+        Jadwal Kegiatan
+      </Heading>
+      <Box data-aos="fade-right" data-aos-delay="200" className="primary-description" textAlign="center" mt={2}>
+        Berikut adalah jadwal kegiatan dan publikasi yang akan datang.
+        <br />
+        Untuk informasi lebih lanjut, lihat detail di bawah ini.
+      </Box>
+      <SimpleGrid columns={layoutConfig.columns} spacing={layoutConfig.gap} mt={5}>
+        {latestFeatures.map((feature, index) => (
+          <Box
+            key={index}
+            p={5}
+            shadow="lg"
+            borderWidth="1px"
+            borderRadius="md"
+            data-aos="fade-up"
+            data-aos-delay={`${index * 100}`}
+            className="primary-feature"
+            bg="white"
+            position="relative"
+            overflow="hidden"
+            _hover={{
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.5 )", // Tambahkan efek hover untuk membuat box terlihat seperti muncul ke depan
+              transform: "translateY(-10px)",
+              zIndex: 1,
+              bg: "purple.100", // Tambahkan warna ungu saat hover
+            }}
+          >
+            <Box
+              bg="var(--chakra-colors-primary-100)" // Warna background logo
+              borderRadius="full"
+              p={4}
+              display="inline-block"
+              position="relative"
+              zIndex={1}
+              _hover={{
+                bg: "white", // Ubah warna background menjadi putih saat hover
+              }}
+            >
+              <Icon as={feature.icon} boxSize={layoutConfig.iconSize} color="var(--chakra-colors-primary-700)" />
+            </Box>
+            <Text mt={4} fontWeight="bold" fontSize="xl" className="primary-title" position="relative" zIndex={1}>
+              {feature.title}
+            </Text>
+            <Box textAlign="right" mt={2} position="relative" zIndex={1}>
+              <ButtonLink href="/jadwal" className="primary-readmore" colorScheme="purple" size="sm">
+                Baca Selanjutnya
+              </ButtonLink>
+            </Box>
+          </Box>
+        ))}
+      </SimpleGrid>
+      <Box textAlign="center" mt={5}>
+        <ButtonLink href="/jadwal" className="primary-readmore" colorScheme="purple" size="lg">
+          Baca Selanjutnya
+        </ButtonLink>
+      </Box>
+    </Box>
   );
 };
 
-const TestimonialsSection = () => {
-  const columns = React.useMemo(() => {
-    return testimonials.items.reduce<Array<typeof testimonials.items>>(
-      (columns, t, i) => {
-        columns[i % 3].push(t);
+// const TestimonialsSection = () => {
+//   const columns = React.useMemo(() => {
+//     return testimonials.items.reduce<Array<typeof testimonials.items>>(
+//       (columns, t, i) => {
+//         columns[i % 3].push(t);
 
-        return columns;
-      },
-      [[], [], []]
-    );
-  }, []);
+//         return columns;
+//       },
+//       [[], [], []]
+//     );
+//   }, []);
 
+//   return (
+//     <Testimonials
+//       title={testimonials.title}
+//       columns={[1, 2, 3]}
+//       innerWidth="container.xl"
+//     >
+//       <>
+//         {columns.map((column, i) => (
+//           <Stack key={i} spacing="8">
+//             {column.map((t, i) => (
+//               <Testimonial key={i} {...t} />
+//             ))}
+//           </Stack>
+//         ))}
+//       </>
+//     </Testimonials>
+//   );
+// };
+const UkmAwardSection = () => {
   return (
-    <Testimonials
-      title={testimonials.title}
-      columns={[1, 2, 3]}
-      innerWidth="container.xl"
-    >
-      <>
-        {columns.map((column, i) => (
-          <Stack key={i} spacing="8">
-            {column.map((t, i) => (
-              <Testimonial key={i} {...t} />
-            ))}
-          </Stack>
-        ))}
-      </>
-    </Testimonials>
+    <Box py={10} bg="#f9f9f9" borderRadius="20px" boxShadow="0 4px 12px rgba(0, 0, 0, 0.1)">
+      <Container maxW="container.xl">
+        <Text fontSize="2xl" fontWeight="bold" mb={4}>
+          Panduan untuk UKM Award
+        </Text>
+        <Text mb={8}>
+          UKM Award adalah penghargaan yang diberikan kepada pelaku usaha kecil dan menengah yang telah menunjukkan prestasi dan kontribusi yang signifikan dalam meningkatkan perekonomian nasional.
+        </Text>
+        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
+          <Image src="/panduan.png" alt="UKM Award" width={800} height={350} objectFit="cover" />
+          <ButtonLink href="/panduan.png" mt={4} colorScheme="purple" size="lg">
+            Download Panduan
+          </ButtonLink>
+        </Box>
+        <Text mt={4}>
+          Untuk mendaftar UKM Award, silakan mengisi formulir pendaftaran yang tersedia di website resmi kami. Pastikan Anda telah memenuhi semua kriteria dan persyaratan yang ditentukan.
+        </Text>
+      </Container>
+    </Box>
   );
 };
 

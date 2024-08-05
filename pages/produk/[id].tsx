@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Container, Heading, Image, Text, VStack } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
@@ -19,16 +19,28 @@ const ProductDetail: NextPage = () => {
     const product = id ? productDetails[id as string] : null;
 
     if (!product) {
-        return <Box p="4">Produk tidak ditemukan.</Box>;
+        return <Box mt="20" p="4">Produk tidak ditemukan.</Box>;
     }
 
     return (
-        <Container maxW="container.md" py="8" mt="20">
-            <Heading mb="4">{product.title}</Heading>
-            <Image src={product.imageUrl} alt={product.title} />
-            <Box mt="4">
-                <Text>{product.description}</Text>
-            </Box>
+        <Container maxW="container.md" py={{ base: '6', md: '8' }} mt={{ base: '10', md: '20' }}>
+            <VStack spacing={{ base: '4', md: '6' }} alignItems="start">
+                <Heading mb="4" fontSize={{ base: '2xl', md: '4xl' }}>
+                    {product.title}
+                </Heading>
+                <Image
+                    src={product.imageUrl}
+                    alt={product.title}
+                    width={{ base: '100%', md: '75%' }}
+                    borderRadius="md"
+                    objectFit="cover"
+                />
+                <Box mt="4">
+                    <Text fontSize={{ base: 'md', md: 'lg' }}>
+                        {product.description}
+                    </Text>
+                </Box>
+            </VStack>
         </Container>
     );
 };

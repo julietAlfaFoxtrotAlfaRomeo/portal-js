@@ -51,7 +51,7 @@ const PelakuUsaha: NextPage = () => {
     });
 
     return (
-        <Container maxW="container.xl" py="8" mt="20">
+        <Container maxW={{ base: 'full', md: 'container.xl' }} py="8" mt="20">
             <Heading mb="8">Pencarian Pelaku Usaha</Heading>
             <Stack spacing="6" mb="8">
                 <FormControl id="search">
@@ -115,36 +115,38 @@ const PelakuUsaha: NextPage = () => {
                         Cari
                     </Button>
                 </Stack>
-            </Stack>
 
-            <Table variant="simple">
-                <Thead>
-                    <Tr>
-                        <Th>#</Th>
-                        <Th>Nama Usaha</Th>
-                        <Th>Produk</Th>
-                        <Th>Alamat</Th>
-                        <Th>Kabupaten / Kota</Th>
-                        <Th>Provinsi</Th>
-                        <Th>No. Telepon/HP</Th>
-                        <Th>Email</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {filteredBusinesses.map(business => (
-                        <Tr key={business.id}>
-                            <Td>{business.id}</Td>
-                            <Td>{business.name}</Td>
-                            <Td>{business.product}</Td>
-                            <Td>{business.address}</Td>
-                            <Td>{business.city}</Td>
-                            <Td>{business.province}</Td>
-                            <Td>{business.phone}</Td>
-                            <Td>{business.email}</Td>
-                        </Tr>
-                    ))}
-                </Tbody>
-            </Table>
+                <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 400px)' }}>
+                    <Table variant="simple" size="md">
+                        <Thead>
+                            <Tr>
+                                <Th>#</Th>
+                                <Th>Nama Usaha</Th>
+                                <Th>Produk</Th>
+                                <Th>Alamat</Th>
+                                <Th>Kabupaten / Kota</Th>
+                                <Th>Provinsi</Th>
+                                <Th>No. Telepon/HP</Th>
+                                <Th>Email</Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {filteredBusinesses.map(business => (
+                                <Tr key={business.id}>
+                                    <Td>{business.id}</Td>
+                                    <Td>{business.name}</Td>
+                                    <Td>{business.product}</Td>
+                                    <Td>{business.address}</Td>
+                                    <Td>{business.city}</Td>
+                                    <Td>{business.province}</Td>
+                                    <Td>{business.phone}</Td>
+                                    <Td>{business.email}</Td>
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    </Table>
+                </div>
+            </Stack>
         </Container>
     );
 };

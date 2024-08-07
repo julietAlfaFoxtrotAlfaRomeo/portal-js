@@ -1,11 +1,10 @@
-import { Link } from '@saas-ui/react'
 import { NextSeoProps } from 'next-seo'
-import { FaGithub, FaTwitter } from 'react-icons/fa'
 import { FiCheck } from 'react-icons/fi'
 import { Logo } from './logo'
-
+import { Logoo } from './logo-footer'
 const siteConfig = {
   logo: Logo,
+  Logoo: Logoo,
   seo: {
     title: 'Kementiran Perdagangan',
     description: 'Webpass',
@@ -60,27 +59,63 @@ const siteConfig = {
   footer: {
     copyright: (
       <>
-        Built by <Link href="https://webpas.my.id">Jafar</Link>
+
       </>
     ),
     links: [
       {
-        href: '',
-        label: 'Contact',
-        id: 'footer-contact',
+        href: '/home',
+        label: 'Home',
+        id: 'footer-home',
       },
       {
-        href: '',
-        label: <FaTwitter size="14" />,
-        id: 'footer-twitter',
+        href: '/etalase',
+        label: 'Etalase',
+        id: 'footer-etalase',
       },
       {
-        href: 'https://',
-        label: <FaGithub size="14" />,
-        id: 'footer-github',
+        href: '/kuliner',
+        label: 'Kuliner',
+        id: 'footer-kuliner',
+      },
+      {
+        href: '/registrasi',
+        label: 'Registrasi',
+        id: 'footer-registrasi',
+      },
+      {
+        href: '/publikasi',
+        label: 'Publikasi',
+        id: 'footer-publikasi',
+      },
+      {
+        href: '/pelaku-usaha',
+        label: 'Pelaku Usaha',
+        id: 'footer-pelaku-usaha',
+      },
+      {
+        href: '/panduan',
+        label: 'Panduan',
+        id: 'footer-panduan',
+      },
+      {
+        href: '/faq',
+        label: 'FAQ',
+        id: 'footer-faq',
+      },
+      {
+        href: '/contact-us',
+        label: 'Contact Us',
+        id: 'footer-contact-us',
+      },
+      {
+        href: '/login',
+        label: 'Login',
+        id: 'footer-login',
       },
     ],
   },
+
   signup: {
     title: 'Start building with Webpass',
     features: [

@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   ButtonGroup,
   Container,
   Heading,
@@ -42,7 +43,9 @@ import {
   FiSmile,
   FiThumbsUp,
 } from "react-icons/fi";
+import { MdArrowForward } from "react-icons/md";
 import EtalaseHome from "./EtalaseHome";
+
 
 
 const Home: NextPage = () => {
@@ -204,13 +207,25 @@ const HighlightsSection = () => {
 
   return (
     <Highlights data-aos="fade-up" data-aos-delay="200">
-      <HighlightsItem colSpan={[1, 2, 3]} title="Etalase Produk UMKM">
-        <VStack alignItems="flex-start" spacing="8">
+      <HighlightsItem colSpan={[1, 2, 3]}>
+        <VStack alignItems="center" spacing="8">
+          <Heading
+            lineHeight="short"
+            fontSize={["4xl", "6xl"]}
+            textAlign="center"
+            as="p"
+            data-aos="fade-right"
+            className="primary-heading"
+            mt={5}
+            mb={-5}
+          >
+            Jadwal Kegiatan
+          </Heading>
           <HStack spacing="15" display={{ base: "block", md: "flex" }} data-aos="zoom-in">
             <Box display={{ base: "none", md: "block" }}>
               <Image src="/100.png" alt="Etalase Produk UMKM" width={500} height={150} />
             </Box>
-            <Text color="muted" fontSize="xl" text-align="center">
+            <Text color="muted" fontSize="xl" text-align="center" textAlign="center">
               Portal ini diperuntukan bagi semua pelaku usaha di Indonesia yang
               <br />berkeinginan untuk mempromosikan produknya melalui Internet.
               <br />Registrasi dilakukan oleh Pelaku usaha sendiri tanpa dipungut bayaran.
@@ -233,12 +248,25 @@ const HighlightsSection = () => {
           </Box>
         </VStack>
       </HighlightsItem>
-      <HighlightsItem colSpan={[1, 2, 3]} title="Kategori UKM Pangan Award" data-aos="fade-up" data-aos-delay="200">
-        <Box width="100%" p={4}>
+      <HighlightsItem colSpan={[1, 2, 3]} data-aos="fade-up" data-aos-delay="200" textAlign="center">
+        <Box width="100%" p={4} textAlign="center">
+          <Heading
+            lineHeight="short"
+            fontSize={["4xl", null, "6xl"]}
+            textAlign="center"
+            as="p"
+            data-aos="fade-right"
+            className="primary-heading"
+            mt={5}
+            mb={10}
+          >
+            Jadwal Kegiatan
+          </Heading>
           <Text
             color="muted"
             fontSize="lg"
             mb={2}
+            textAlign="center"
           >
             UKM Pangan Award mengakui usaha kecil dan menengah yang luar biasa dalam berbagai kategori. Jelajahi berbagai kategori dan temukan keunggulan di setiap bidang:
           </Text>
@@ -303,19 +331,19 @@ const FeaturesSection = () => {
   // Ambil 6 acara terbaru dari data jadwal
   const latestFeatures = jadwal.slice(0, 6).map(feature => ({
     ...feature,
-    icon: feature.icon as React.ElementType // Pastikan icon adalah tipe yang benar
   }));
 
   return (
     <Box id="features" p={5} className="primary">
       <Heading
         lineHeight="short"
-        fontSize={["2xl", null, "4xl"]}
+        fontSize={["4xl", null, "6xl"]}
         textAlign="center"
         as="p"
         data-aos="fade-right"
         className="primary-heading"
         mt={5}
+        mb={10}
       >
         Jadwal Kegiatan
       </Heading>
@@ -339,40 +367,30 @@ const FeaturesSection = () => {
             position="relative"
             overflow="hidden"
             _hover={{
-              boxShadow: "0 0 10px rgba(0, 0, 0, 0.5 )", // Tambahkan efek hover untuk membuat box terlihat seperti muncul ke depan
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.5 )",
               transform: "translateY(-10px)",
               zIndex: 1,
-              bg: "purple.100", // Tambahkan warna ungu saat hover
+              bg: "purple.100",
             }}
           >
-            <Box
-              bg="var(--chakra-colors-primary-100)" // Warna background logo
-              borderRadius="full"
-              p={4}
-              display="inline-block"
-              position="relative"
-              zIndex={1}
-              _hover={{
-                bg: "white", // Ubah warna background menjadi putih saat hover
-              }}
-            >
-              <Icon as={feature.icon} boxSize={layoutConfig.iconSize} color="var(--chakra-colors-primary-700)" />
+            <Box display="flex" alignItems="center">
+              <Icon as={MdArrowForward} w={6} h={6} color="purple.500" mr={3} />
+              <Text mt={4} fontWeight="bold" fontSize="xl" className="primary-title" position="relative" zIndex={1}>
+                {feature.title}
+              </Text>
             </Box>
-            <Text mt={4} fontWeight="bold" fontSize="xl" className="primary-title" position="relative" zIndex={1}>
-              {feature.title}
-            </Text>
             <Box textAlign="right" mt={2} position="relative" zIndex={1}>
-              <ButtonLink href="/jadwal" className="primary-readmore" colorScheme="purple" size="sm">
+              <Button as="a" href="/jadwal" className="primary-readmore" colorScheme="purple" size="sm">
                 Baca Selanjutnya
-              </ButtonLink>
+              </Button>
             </Box>
           </Box>
         ))}
       </SimpleGrid>
       <Box textAlign="center" mt={5}>
-        <ButtonLink href="/jadwal" className="primary-readmore" colorScheme="purple" size="lg">
+        <Button as="a" href="/jadwal" className="primary-readmore" colorScheme="purple" size="lg">
           Baca Selanjutnya
-        </ButtonLink>
+        </Button>
       </Box>
     </Box>
   );
@@ -410,21 +428,30 @@ const FeaturesSection = () => {
 // };
 const UkmAwardSection = () => {
   return (
-    <Box py={10} bg="#f9f9f9" borderRadius="20px" boxShadow="0 4px 12px rgba(0, 0, 0, 0.1)">
+    <Box py={10} borderRadius="20px">
       <Container maxW="container.xl">
-        <Text fontSize="2xl" fontWeight="bold" mb={4}>
-          Panduan untuk UKM Award
-        </Text>
-        <Text mb={8}>
+        <Heading
+          lineHeight="short"
+          fontSize={["4xl", null, "6xl"]}
+          textAlign="center"
+          as="p"
+          data-aos="fade-right"
+          className="primary-heading"
+          mt={5}
+          mb={20}
+        >
+          Panduan Pendaftaran
+        </Heading>
+        {/* <Text mb={8} textAlign="center">
           UKM Award adalah penghargaan yang diberikan kepada pelaku usaha kecil dan menengah yang telah menunjukkan prestasi dan kontribusi yang signifikan dalam meningkatkan perekonomian nasional.
-        </Text>
+        </Text> */}
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
           <Image src="/panduan.png" alt="UKM Award" width={800} height={350} objectFit="cover" />
           <ButtonLink href="/panduan.png" mt={4} colorScheme="purple" size="lg">
             Download Panduan
           </ButtonLink>
         </Box>
-        <Text mt={4}>
+        <Text mt={10} textAlign="center">
           Untuk mendaftar UKM Award, silakan mengisi formulir pendaftaran yang tersedia di website resmi kami. Pastikan Anda telah memenuhi semua kriteria dan persyaratan yang ditentukan.
         </Text>
       </Container>

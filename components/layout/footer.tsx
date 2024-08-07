@@ -1,16 +1,12 @@
 import {
   Box,
-  BoxProps,
-  SimpleGrid,
+  Link as ChakraLink,
   Container,
-  Text,
+  SimpleGrid,
   Stack,
-  Flex,
-  HStack,
+  Text,
+  VStack,
 } from '@chakra-ui/react'
-
-import { Link, LinkProps } from '@saas-ui/react'
-
 import siteConfig from 'data/config'
 
 export interface FooterProps extends BoxProps {
@@ -18,30 +14,47 @@ export interface FooterProps extends BoxProps {
 }
 
 export const Footer: React.FC<FooterProps> = (props) => {
-  const { columns = 2, ...rest } = props
+  const { columns = 3, ...rest } = props
   return (
-    <Box bg="white" _dark={{ bg: 'gray.900' }} {...rest}>
+    <Box bg="gray.900" color="white" {...rest}>
       <Container maxW="container.2xl" px="8" py="8">
-        <SimpleGrid columns={columns}>
-          <Stack spacing="8">
-            <Stack alignItems="flex-start">
-              <Flex>
-                <Box as={siteConfig.logo} flex="1" height="32px" />
-              </Flex>
-              <Text fontSize="md" color="muted">
-                {siteConfig.seo.description}
-              </Text>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+          <VStack align="start">
+            <Box as={siteConfig.Logoo} height="80px" mb={10} />
+            <Text fontSize="lg" fontWeight="bold">ETALASE PRODUK UMKM</Text>
+            <Text>KEMENTRIAN PERDAGANGAN REPUBLIK INDONESIA</Text>
+            <Text>Jl. M. I. Ridwan Rais, No. 5, Jakarta Pusat 10110, Telepon (021) 3841961/62</Text>
+            <Text>Email: info@portal-indonesia.id</Text>
+          </VStack>
+          <SimpleGrid columns={2} spacing={10} mt={10} ml={{ base: 0, md: 20 }}>
+            <Stack spacing="2">
+              <Text fontSize="lg" fontWeight="bold">Links Kiri</Text>
+              <Stack>
+                {siteConfig.footer?.links?.slice(0, Math.ceil(siteConfig.footer.links.length / 2)).map(({ href, label }) => (
+                  <FooterLink key={href} href={href}>
+                    {label}
+                  </FooterLink>
+                ))}
+              </Stack>
             </Stack>
-            <Copyright>{siteConfig.footer.copyright}</Copyright>
-          </Stack>
-          <HStack justify="flex-end" spacing="4" alignSelf="flex-end">
-            {siteConfig.footer?.links?.map(({ href, label }) => (
-              <FooterLink key={href} href={href}>
-                {label}
-              </FooterLink>
-            ))}
-          </HStack>
+            <Stack spacing="2">
+              <Text fontSize="lg" fontWeight="bold">Links Kanan</Text>
+              <Stack>
+                {siteConfig.footer?.links?.slice(Math.ceil(siteConfig.footer.links.length / 2)).map(({ href, label }) => (
+                  <FooterLink key={href} href={href}>
+                    {label}
+                  </FooterLink>
+                ))}
+              </Stack>
+            </Stack>
+          </SimpleGrid>
         </SimpleGrid>
+        <VStack align="center">
+          <Text color="muted" fontSize="sm" textAlign="center" mt={5}>Copyright ©️ 2021 Direktorat Penggunaan dan Pemasaran Produk Dalam Negeri</Text>
+          <ChakraLink href="https://www.histats.com/viewstats/?sid=4615408&ccid=200" color="white" fontSize="sm" textDecoration="none" _hover={{ color: 'purple.500', transition: 'color .2s ease-in' }}>
+            Statistik Situs
+          </ChakraLink>
+        </VStack>
       </Container>
     </Box>
   )
@@ -56,13 +69,9 @@ export const Copyright: React.FC<CopyrightProps> = ({
   title,
   children,
 }: CopyrightProps) => {
-  let content
-  if (title && !children) {
-    content = `&copy; ${new Date().getFullYear()} - ${title}`
-  }
   return (
     <Text color="muted" fontSize="sm">
-      {content || children}
+      {children}
     </Text>
   )
 }
@@ -70,17 +79,17 @@ export const Copyright: React.FC<CopyrightProps> = ({
 export const FooterLink: React.FC<LinkProps> = (props) => {
   const { children, ...rest } = props
   return (
-    <Link
-      color="muted"
+    <ChakraLink
+      color="white"
       fontSize="sm"
       textDecoration="none"
       _hover={{
-        color: 'white',
+        color: 'purple.500',
         transition: 'color .2s ease-in',
       }}
       {...rest}
     >
       {children}
-    </Link>
+    </ChakraLink>
   )
 }

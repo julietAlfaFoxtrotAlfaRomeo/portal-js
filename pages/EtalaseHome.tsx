@@ -36,8 +36,18 @@ const Etalase: NextPage = () => {
         : products.filter(product => product.category === selectedCategory);
 
     return (
-        <Container maxW={{ base: "container.sm", md: "container.md", lg: "container.xl" }} py="8" mt="20">
-            <Heading mb="6">Etalase Produk</Heading>
+        <Container maxW={{ base: "container.sm", md: "container.md", lg: "container.xl" }} py="8" mt="5">
+            <Heading
+                lineHeight="short"
+                fontSize={["4xl", "6xl"]}
+                textAlign="center"
+                as="p"
+                data-aos="fade-right"
+                className="primary-heading"
+                mb={10}
+            >
+                Jadwal Kegiatan
+            </Heading>
             <CategoryButtons selectedCategory={selectedCategory} handleCategoryChange={handleCategoryChange} />
             <Grid
                 templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}

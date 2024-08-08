@@ -1,33 +1,37 @@
-import { Button, ButtonProps, forwardRef } from "@chakra-ui/react";
-import Link from "next/link";
+import { Button, ButtonProps } from "@chakra-ui/react";
+import NextLink from "next/link";
+import React, { forwardRef } from "react";
 
 export interface NavLinkProps extends ButtonProps {
   isActive?: boolean;
   href?: string;
   id?: string;
+  children?: React.ReactNode; // Make sure children is a ReactNode
 }
 
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) => {
-  const { href, isActive, ...rest } = props;
+  const { href, isActive, children, ...rest } = props;
 
   return (
     <Button
-      as={Link}
+      as={NextLink}
       href={href}
       ref={ref}
       variant="nav-link"
       lineHeight="2rem"
       fontWeight="medium"
       _hover={{
-        bg: "purple.500", // Background color on hover
-        color: "white",   // Text color on hover
+        bg: "purple.500",
+        color: "white",
       }}
       _active={{
-        bg: "purple.600", // Background color when active
-        color: "white",   // Text color when active
+        bg: "purple.600",
+        color: "white",
       }}
       {...rest}
-    />
+    >
+      {children} {/* Render children */}
+    </Button>
   );
 });
 

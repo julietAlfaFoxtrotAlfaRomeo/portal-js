@@ -1,16 +1,10 @@
-import { HStack } from "@chakra-ui/react";
-import * as React from "react";
-
-import { useRouter } from "next/router";
-
-import siteConfig from "data/config";
-
-import { NavLink } from "components/nav-link";
-
-import { useScrollSpy } from "hooks/use-scrollspy";
-
-import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
+import { HStack, useDisclosure } from "@chakra-ui/react";
 import { MobileNavButton, MobileNavContent } from "components/mobile-nav";
+import { NavLink } from "components/nav-link";
+import siteConfig from "data/config";
+import { useScrollSpy } from "hooks/use-scrollspy";
+import { useRouter } from "next/router";
+import React from "react"; // Import React
 
 const Navigation: React.FC = () => {
   const mobileNav = useDisclosure();
@@ -24,32 +18,30 @@ const Navigation: React.FC = () => {
     }
   );
 
-  const mobileNavBtnRef = React.useRef<HTMLButtonElement>();
+  const mobileNavBtnRef = React.useRef<HTMLButtonElement | null>(null);
 
-  useUpdateEffect(() => {
+  React.useEffect(() => {
     mobileNavBtnRef.current?.focus();
   }, [mobileNav.isOpen]);
 
   return (
     <HStack spacing="2" flexShrink={0}>
-      {siteConfig.header.links.map(({ href, id, ...props }, i) => {
-        return (
-          <NavLink
-            display={["none", null, "block"]}
-            href={href || `/#${id}`}
-            key={i}
-            isActive={
-              !!(
-                (id && activeId === id) ||
-                (href && !!router.asPath.match(new RegExp(href)))
-              )
-            }
-            {...props}
-          >
-            {props.label}
-          </NavLink>
-        );
-      })}
+      {siteConfig.header.links.map(({ href, id, ...props }, i) => (
+        <NavLink
+          display={["none", null, "block"]}
+          href={href || `/#${id}`}
+          key={i}
+          isActive={
+            !!(
+              (id && activeId === id) ||
+              (href && !!router.asPath.match(new RegExp(href)))
+            )
+          }
+          {...props}
+        >
+          {props.label} {/* Pass label as children */}
+        </NavLink>
+      ))}
 
       <MobileNavButton
         ref={mobileNavBtnRef}

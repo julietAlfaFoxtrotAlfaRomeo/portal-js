@@ -1,25 +1,28 @@
 import {
   Box,
+  BoxProps,
   Link as ChakraLink,
+  LinkProps as ChakraLinkProps,
   Container,
   SimpleGrid,
   Stack,
   Text,
   VStack,
-} from '@chakra-ui/react'
-import siteConfig from 'data/config'
+} from '@chakra-ui/react';
+import siteConfig from 'data/config';
 
 export interface FooterProps extends BoxProps {
-  columns?: number
+  columns?: number;
 }
 
 export const Footer: React.FC<FooterProps> = (props) => {
-  const { columns = 3, ...rest } = props
+  const { columns = 3, ...rest } = props;
   return (
     <Box bg="gray.900" color="white" {...rest}>
       <Container maxW="container.2xl" px="8" py="8">
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <VStack align="start">
+            {/* Ensure siteConfig.Logoo is properly defined and imported */}
             <Box as={siteConfig.Logoo} height="80px" mb={10} />
             <Text fontSize="lg" fontWeight="bold">ETALASE PRODUK UMKM</Text>
             <Text>KEMENTRIAN PERDAGANGAN REPUBLIK INDONESIA</Text>
@@ -50,19 +53,27 @@ export const Footer: React.FC<FooterProps> = (props) => {
           </SimpleGrid>
         </SimpleGrid>
         <VStack align="center">
-          <Text color="muted" fontSize="sm" textAlign="center" mt={5}>Copyright ©️ 2021 Direktorat Penggunaan dan Pemasaran Produk Dalam Negeri</Text>
-          <ChakraLink href="https://www.histats.com/viewstats/?sid=4615408&ccid=200" color="white" fontSize="sm" textDecoration="none" _hover={{ color: 'purple.500', transition: 'color .2s ease-in' }}>
+          <Text color="muted" fontSize="sm" textAlign="center" mt={5}>
+            Copyright ©️ 2021 Direktorat Penggunaan dan Pemasaran Produk Dalam Negeri
+          </Text>
+          <ChakraLink
+            href="https://www.histats.com/viewstats/?sid=4615408&ccid=200"
+            color="white"
+            fontSize="sm"
+            textDecoration="none"
+            _hover={{ color: 'purple.500', transition: 'color .2s ease-in' }}
+          >
             Statistik Situs
           </ChakraLink>
         </VStack>
       </Container>
     </Box>
-  )
+  );
 }
 
 export interface CopyrightProps {
-  title?: React.ReactNode
-  children: React.ReactNode
+  title?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const Copyright: React.FC<CopyrightProps> = ({
@@ -73,11 +84,11 @@ export const Copyright: React.FC<CopyrightProps> = ({
     <Text color="muted" fontSize="sm">
       {children}
     </Text>
-  )
+  );
 }
 
-export const FooterLink: React.FC<LinkProps> = (props) => {
-  const { children, ...rest } = props
+export const FooterLink: React.FC<ChakraLinkProps> = (props) => {
+  const { children, ...rest } = props;
   return (
     <ChakraLink
       color="white"
@@ -91,5 +102,5 @@ export const FooterLink: React.FC<LinkProps> = (props) => {
     >
       {children}
     </ChakraLink>
-  )
+  );
 }

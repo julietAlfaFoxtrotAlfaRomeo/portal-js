@@ -1,42 +1,28 @@
-import { Button, Center, Container, Grid, Heading, Link } from "@chakra-ui/react";
-import CategoryButtons from "components/etalase/CategoryButtons";
-import ProductCard from "components/etalase/ProductCard";
-import { motion } from "framer-motion";
-import { NextPage } from "next";
-import { useState } from "react";
+// pages/etalase.tsx
+import { Container, Grid, Heading } from '@chakra-ui/react';
+import ProductCard from 'components/etalase/ProductCard';
+import { NextPage } from 'next';
+import { useState } from 'react';
+import { products } from '../data/products';
 
-const products = Array.from({ length: 9 }, (_, i) => ({
-    id: (i + 1).toString(),
-    title: `Produk ${i + 1}`,
-    description: `Deskripsi produk ${i + 1}`,
-    imageUrl: "/okm.png",
-    category: [
-        "SEMUA PRODUK",
-        "TERBARU",
-        "MAKANAN & MINUMAN",
-        "FASHION",
-        "KOSMETIK",
-        "KERAJINAN",
-        "JASA",
-        "DEKORASI",
-        "AKSESORIS",
-        "MULTIPRODUK"
-    ][i % 10]
-}));
+const ITEMS_PER_PAGE = 6; // Mengatur maksimal 6 produk per kategori
 
 const Etalase: NextPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState<string>("SEMUA PRODUK");
+    const [selectedCategory, setSelectedCategory] = useState<string>('SEMUA PRODUK');
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category);
     };
 
-    const filteredProducts = selectedCategory === "SEMUA PRODUK"
+    // Filter produk berdasarkan kategori
+    const filteredProducts = selectedCategory === 'SEMUA PRODUK'
         ? products
         : products.filter(product => product.category === selectedCategory);
 
+    const displayedProducts = filteredProducts.slice(0, ITEMS_PER_PAGE);
+
     return (
-        <Container maxW={{ base: "container.sm", md: "container.md", lg: "container.xl" }} py="8" mt="5">
+        <Container maxW="container.xl" py="8" >
             <Heading
                 lineHeight="short"
                 fontSize={["4xl", "6xl"]}
@@ -44,32 +30,23 @@ const Etalase: NextPage = () => {
                 as="p"
                 data-aos="fade-right"
                 className="primary-heading"
-                mb={10}
+                mb={6}
             >
-                Jadwal Kegiatan
+                Etalase
             </Heading>
-            <CategoryButtons selectedCategory={selectedCategory} handleCategoryChange={handleCategoryChange} />
             <Grid
-                templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-                gap="6"
+                templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+                gap="4"
             >
-                {filteredProducts.map((product) => (
-                    <motion.div
+                {displayedProducts.map((product) => (
+                    <ProductCard
                         key={product.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <ProductCard id={product.id} title={product.title} imageUrl={product.imageUrl} />
-                    </motion.div>
+                        id={product.id}
+                        title={product.title}
+                        imageUrl={product.imageUrl}
+                    />
                 ))}
             </Grid>
-            <Center mt="10">
-                <Link href="/etalase">
-                    <Button colorScheme="primary" size="lg">Lihat Selanjutnya</Button>
-                </Link>
-            </Center>
         </Container>
     );
 };

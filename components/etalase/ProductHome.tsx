@@ -1,32 +1,46 @@
-import { Box, Heading, Image } from '@chakra-ui/react';
-import Link from 'next/link';
+import { Box, Image, Link, Text } from "@chakra-ui/react";
+import NextLink from 'next/link'; // Import Next.js Link component
+import React from "react";
 
 interface ProductCardProps {
+    id: string;
     title: string;
     imageUrl: string;
-    category: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ title, imageUrl, category }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ id, title, imageUrl }) => {
     return (
-        <Link href={`/etalase?category=${encodeURIComponent(category)}`} passHref>
-            <Box
+        <NextLink href={`/etalase`} passHref>
+            <Link
+                _hover={{ textDecoration: 'none' }} // Menghilangkan underline saat hover
                 borderWidth="1px"
                 borderRadius="md"
                 overflow="hidden"
-                cursor="pointer"
-                transition="transform 0.3s ease, box-shadow 0.3s ease"
-                _hover={{
-                    transform: 'scale(1.05)',
-                    boxShadow: 'lg',
-                }}
+                display="block"
+                transition="all 0.3s ease" // Transisi halus untuk efek hover
             >
-                <Image src={imageUrl} alt={title} />
-                <Box p="4">
-                    <Heading size="md">{title}</Heading>
+                <Box
+                    width="100%"
+                    height="0"
+                    paddingBottom="100%" // Membuat aspek rasio 1:1
+                    position="relative"
+                >
+                    <Image
+                        src={imageUrl}
+                        alt={title}
+                        objectFit="cover" // Memastikan gambar mengisi area tanpa distorsi
+                        position="absolute"
+                        top="0"
+                        left="0"
+                        width="100%"
+                        height="100%"
+                    />
                 </Box>
-            </Box>
-        </Link>
+                <Box p="6">
+                    <Text fontWeight="bold" fontSize="lg">{title}</Text>
+                </Box>
+            </Link>
+        </NextLink>
     );
 };
 

@@ -44,7 +44,7 @@ import {
   FiThumbsUp,
 } from "react-icons/fi";
 import { MdArrowForward } from "react-icons/md";
-import EtalaseHome from "./EtalaseHome";
+import Etalase from "./etalasehome";
 
 
 
@@ -62,10 +62,9 @@ const Home: NextPage = () => {
       <Box>
         <Carousel />
         <HeroSection />
-        <EtalaseHome />
         <HighlightsSection />
+        <Etalase />
         <FeaturesSection />
-        {/* <TestimonialsSection /> */}
         <UkmAwardSection />
         <FaqSection />
       </Box>
@@ -196,10 +195,12 @@ const HeroSection: React.FC = () => {
     </Box>
   );
 };
-<EtalaseHome />
+<Etalase />
+
+
 const HighlightsSection = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   const handleTagClick = (category: string) => {
     router.push(`/etalase/`);
@@ -219,7 +220,8 @@ const HighlightsSection = () => {
             mt={5}
             mb={-5}
           >
-            Jadwal Kegiatan
+
+            Etalase Produk UMKM
           </Heading>
           <HStack spacing="15" display={{ base: "block", md: "flex" }} data-aos="zoom-in">
             <Box display={{ base: "none", md: "block" }}>
@@ -260,7 +262,7 @@ const HighlightsSection = () => {
             mt={5}
             mb={10}
           >
-            Jadwal Kegiatan
+            Jelajahi Kategori Kami
           </Heading>
           <Text
             color="muted"

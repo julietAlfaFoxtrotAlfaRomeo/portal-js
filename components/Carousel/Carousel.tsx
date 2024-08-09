@@ -12,7 +12,7 @@ const Carousel: React.FC = () => {
             <BootstrapCarousel>
                 <BootstrapCarousel.Item>
                     <Image
-                        src="/w.png"
+                        src="/1.png"
                         alt="First slide"
                         layout="responsive"
                         width={1200}
@@ -25,7 +25,7 @@ const Carousel: React.FC = () => {
                 </BootstrapCarousel.Item>
                 <BootstrapCarousel.Item>
                     <Image
-                        src="/w.png"
+                        src="/4.png"
                         alt="Second slide"
                         layout="responsive"
                         width={1200}
@@ -38,7 +38,7 @@ const Carousel: React.FC = () => {
                 </BootstrapCarousel.Item>
                 <BootstrapCarousel.Item>
                     <Image
-                        src="/w.png"
+                        src="/5.png"
                         alt="Third slide"
                         layout="responsive"
                         width={1200}

@@ -6,7 +6,7 @@ export interface NavLinkProps extends ButtonProps {
   isActive?: boolean;
   href?: string;
   id?: string;
-  children?: React.ReactNode; // Make sure children is a ReactNode
+  children?: React.ReactNode;
 }
 
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) => {
@@ -15,7 +15,7 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) 
   return (
     <Button
       as={NextLink}
-      href={href}
+      href={href || "#"}
       ref={ref}
       variant="nav-link"
       lineHeight="2rem"
@@ -30,7 +30,7 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) 
       }}
       {...rest}
     >
-      {children} {/* Render children */}
+      {children}
     </Button>
   );
 });

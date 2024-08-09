@@ -1,5 +1,6 @@
-import { Box, Heading, Image } from '@chakra-ui/react';
-import Link from 'next/link';
+import { Box, Image, Text } from "@chakra-ui/react";
+import NextLink from 'next/link'; // Import Next.js Link component
+import React from "react";
 
 interface ProductCardProps {
     id: string;
@@ -9,24 +10,37 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ id, title, imageUrl }) => {
     return (
-        <Link href={`/produk/${id}`} passHref>
+        <NextLink href={`/produk/${id}`} passHref>
             <Box
                 borderWidth="1px"
                 borderRadius="md"
                 overflow="hidden"
-                cursor="pointer"
-                transition="transform 0.3s ease, box-shadow 0.3s ease"
-                _hover={{
-                    transform: 'scale(1.05)',
-                    boxShadow: 'lg',
-                }}
+                display="block"
+                transition="all 0.3s ease" // Transisi halus untuk efek hover
+                _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} // Menghilangkan underline dan menambahkan efek zoom saat hover
             >
-                <Image src={imageUrl} alt={title} />
-                <Box p="4">
-                    <Heading size="md">{title}</Heading>
+                <Box
+                    width="100%"
+                    height="0"
+                    paddingBottom="100%" // Membuat aspek rasio 1:1
+                    position="relative"
+                >
+                    <Image
+                        src={imageUrl}
+                        alt={title}
+                        objectFit="cover" // Memastikan gambar mengisi area tanpa distorsi
+                        position="absolute"
+                        top="0"
+                        left="0"
+                        width="100%"
+                        height="100%"
+                    />
+                </Box>
+                <Box p="6">
+                    <Text fontWeight="bold" fontSize="lg">{title}</Text>
                 </Box>
             </Box>
-        </Link>
+        </NextLink>
     );
 };
 

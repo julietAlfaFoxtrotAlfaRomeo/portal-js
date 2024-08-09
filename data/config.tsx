@@ -24,19 +24,38 @@ const siteConfig = {
         id: 'etalase',
       },
       {
-        label: 'Berita',
-        href: '/berita',
-        id: 'Berita',
+        label: 'Katalog',
+        id: 'dropdown',
+        subLinks: [
+          { label: 'Kuliner', href: '/katalog/kuliner', id: 'kuliner' },
+          { label: 'Fashion Muslim', href: 'katalog/fashion-muslim', id: 'fashion-muslim' },
+          { label: 'Produk Halal', href: 'katalog/produk-halal', id: 'produk-halal' },
+        ],
       },
       {
-        label: 'Jadwal',
-        href: '/jadwal',
-        id: 'Jadwal',
+        label: 'Registrasi',
+        href: '/registrasi',
+        id: 'registrasi',
       },
       {
-        label: 'Pelaku usaha',
+        label: 'Pelaku Usaha',
         href: '/PelakuUsaha',
         id: 'pelaku-usaha',
+      },
+      {
+        label: 'Publikasi',
+        href: '/publikasi',
+        id: 'publikasi',
+      },
+      {
+        label: 'Panduan',
+        href: '/panduan',
+        id: 'panduan',
+      },
+      {
+        label: 'FAQ',
+        href: '/faq',
+        id: 'faq',
       },
       {
         label: 'Contact Us',
@@ -47,12 +66,6 @@ const siteConfig = {
         label: 'Login',
         href: '/login',
         id: 'login',
-      },
-      {
-        label: 'Sign Up',
-        href: '/signup',
-        variant: 'primary',
-        id: 'sign-up',
       },
     ],
   },

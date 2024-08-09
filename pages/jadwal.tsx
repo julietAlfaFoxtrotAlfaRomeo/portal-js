@@ -116,7 +116,7 @@ const FeaturesSection: React.FC = () => {
                             <p>Lokasi Pameran: {selectedFeature.location}</p>
                             <p>Kota: {selectedFeature.city}</p>
                             <p>Provinsi: {selectedFeature.province}</p>
-                            <Image src={selectedFeature.pamphlet} alt="Pamflet" width={250} height={150} />
+                            <Image src={selectedFeature.pamphlet} alt="Pamflet" width={400} height={250} />
                             <Button onClick={() => setShowAll(false)} bg="purple.500" color="white">Tutup</Button>
                         </Box>
                     </Box>

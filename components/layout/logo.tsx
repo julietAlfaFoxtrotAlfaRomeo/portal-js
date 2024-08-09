@@ -12,7 +12,7 @@ import siteConfig from 'data/config'
 export const Logo = ({ href = '/', onClick }: LogoProps) => {
   let logo
   if (siteConfig.logo) {
-    logo = <Box as={siteConfig.logo} height="32px" mt="-4px" />
+    logo = <Box as={siteConfig.logo} height="42px" mt="-4px" />
   } else {
     logo = (
       <Heading as="h1" size="md">

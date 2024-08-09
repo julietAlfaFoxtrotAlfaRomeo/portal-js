@@ -4,6 +4,7 @@ import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
   Container,
+  HStack,
   SimpleGrid,
   Stack,
   Text,
@@ -22,16 +23,17 @@ export const Footer: React.FC<FooterProps> = (props) => {
       <Container maxW="container.2xl" px="8" py="8">
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <VStack align="start">
-            {/* Ensure siteConfig.Logoo is properly defined and imported */}
-            <Box as={siteConfig.Logoo} height="80px" mb={10} />
-            <Text fontSize="lg" fontWeight="bold">ETALASE PRODUK UMKM</Text>
+            <HStack>
+              <Box as={siteConfig.Logoo} height="50px" mb={5} />
+              <Text fontSize="lg" fontWeight="bold">ETALASE PRODUK UMKM</Text>
+            </HStack>
             <Text>KEMENTRIAN PERDAGANGAN REPUBLIK INDONESIA</Text>
             <Text>Jl. M. I. Ridwan Rais, No. 5, Jakarta Pusat 10110, Telepon (021) 3841961/62</Text>
             <Text>Email: info@portal-indonesia.id</Text>
           </VStack>
           <SimpleGrid columns={2} spacing={10} mt={10} ml={{ base: 0, md: 20 }}>
             <Stack spacing="2">
-              <Text fontSize="lg" fontWeight="bold">Links Kiri</Text>
+              <Text fontSize="lg" fontWeight="bold">Links </Text>
               <Stack>
                 {siteConfig.footer?.links?.slice(0, Math.ceil(siteConfig.footer.links.length / 2)).map(({ href, label }) => (
                   <FooterLink key={href} href={href}>
@@ -41,7 +43,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
               </Stack>
             </Stack>
             <Stack spacing="2">
-              <Text fontSize="lg" fontWeight="bold">Links Kanan</Text>
+              <Text fontSize="lg" fontWeight="bold">Links </Text>
               <Stack>
                 {siteConfig.footer?.links?.slice(Math.ceil(siteConfig.footer.links.length / 2)).map(({ href, label }) => (
                   <FooterLink key={href} href={href}>

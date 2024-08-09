@@ -7,11 +7,11 @@ import {
   Flex,
   useColorModeValue,
 } from '@chakra-ui/react'
-import Navigation from './navigation'
-import { Logo } from './logo'
 import { useScroll } from 'framer-motion'
+import { Logo } from './logo'
+import Navigation from './navigation'
 
-export interface HeaderProps extends Omit<BoxProps, 'children'> {}
+export interface HeaderProps extends Omit<BoxProps, 'children'> { }
 
 export const Header = (props: HeaderProps) => {
   const ref = React.useRef<HTMLHeadingElement>(null)

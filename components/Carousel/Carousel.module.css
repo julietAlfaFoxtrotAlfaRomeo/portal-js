@@ -1,23 +1,36 @@
-.carousel-item {
-  position: relative;
-  width: 100%;
+.carousel-content h6 {
+    font-size: 4vw; /* Responsive font size */
 }
 
-.carousel-item img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+.carousel-content h1 {
+    font-size: 8vw; /* Responsive font size */
+    line-height: 1.2;
 }
 
-.carousel-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+.carousel-content p {
+    font-size: 3.5vw; /* Responsive font size */
 }
 
-.carousel-caption h3,
-.carousel-caption p {
-  color: white;
+.carousel-content-btn1,
+.carousel-content-btn2 {
+    font-size: 3vw; /* Responsive font size */
+}
+
+@media (min-width: 768px) {
+    .carousel-content h6 {
+        font-size: 2vw; /* Adjusted for larger screens */
+    }
+
+    .carousel-content h1 {
+        font-size: 4vw; /* Adjusted for larger screens */
+    }
+
+    .carousel-content p {
+        font-size: 2vw; /* Adjusted for larger screens */
+    }
+
+    .carousel-content-btn1,
+    .carousel-content-btn2 {
+        font-size: 1.5vw; /* Adjusted for larger screens */
+    }
 }

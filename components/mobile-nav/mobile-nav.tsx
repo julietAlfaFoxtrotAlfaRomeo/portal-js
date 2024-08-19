@@ -1,6 +1,7 @@
 import {
   Box,
   CloseButton,
+  Collapse,
   Flex,
   HStack,
   IconButton,
@@ -11,51 +12,76 @@ import {
   useColorModeValue,
   useUpdateEffect
 } from '@chakra-ui/react'
+import { Link } from '@saas-ui/react'
+import { Logo } from 'components/layout/logo'
+import siteConfig from 'data/config'
 import { AnimatePresence, motion } from 'framer-motion'
 import useRouteChanged from 'hooks/use-route-changed'
-// import { getRoutes } from '@/layouts/mdx'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RemoveScroll } from 'react-remove-scroll'
 
-import { Link } from '@saas-ui/react'
-import { Logo } from 'components/layout/logo'
-import siteConfig from 'data/config'
-
 interface NavLinkProps extends LinkProps {
   label: string
   href?: string
   isActive?: boolean
+  subLinks?: { label: string, href?: string, id: string }[]
 }
 
-function NavLink({ href, children, isActive, ...rest }: NavLinkProps) {
+function NavLink({ href, children, isActive, subLinks, ...rest }: NavLinkProps) {
   const { pathname } = useRouter()
+  const [isSubMenuOpen, setIsSubMenuOpen] = React.useState(false)
   const bgActiveHoverColor = useColorModeValue('gray.100', 'whiteAlpha.100')
 
   const [, group] = href?.split('/') || []
   isActive = isActive ?? pathname.includes(group)
 
+  const handleToggleSubMenu = () => {
+    setIsSubMenuOpen(!isSubMenuOpen)
+  }
+
   return (
-    <Link
-      href={href}
-      display="inline-flex"
-      flex="1"
-      minH="40px"
-      px="8"
-      py="3"
-      transition="0.2s all"
-      fontWeight={isActive ? 'semibold' : 'medium'}
-      borderColor={isActive ? 'purple.400' : undefined}
-      borderBottomWidth="1px"
-      color={isActive ? 'white' : undefined}
-      _hover={{
-        bg: isActive ? 'purple.500' : bgActiveHoverColor,
-      }}
-      {...rest}
-    >
-      {children}
-    </Link>
+    <Box>
+      <Link
+        href={href}
+        display="inline-flex"
+        flex="1"
+        minH="40px"
+        px="8"
+        py="3"
+        transition="0.2s all"
+        fontWeight={isActive ? 'semibold' : 'medium'}
+        borderColor={isActive ? 'purple.400' : undefined}
+        borderBottomWidth="1px"
+        color={isActive ? 'purple.500' : undefined}
+        _hover={{
+          bg: isActive ? 'purple.500' : bgActiveHoverColor,
+        }}
+        {...rest}
+        onClick={subLinks ? handleToggleSubMenu : undefined}
+      >
+        {children}
+      </Link>
+      {subLinks && (
+        <Collapse in={isSubMenuOpen}>
+          <Box mt="2" pl="8">
+            {subLinks.map((subLink) => (
+              <Link
+                key={subLink.id}
+                href={subLink.href || "#"}
+                display="block"
+                px="8"
+                py="2"
+                _hover={{ bg: 'purple.50' }}
+              >
+                {subLink.label}
+              </Link>
+            ))}
+          </Box>
+        </Collapse>
+      )}
+    </Box>
   )
 }
 
@@ -72,10 +98,6 @@ export function MobileNavContent(props: MobileNavContentProps) {
 
   useRouteChanged(onClose)
 
-  /**
-   * Scenario: Menu is open on mobile, and user resizes to desktop/tablet viewport.
-   * Result: We'll close the menu
-   */
   const showOnBreakpoint = useBreakpointValue({ base: true, lg: false })
 
   React.useEffect(() => {
@@ -123,19 +145,16 @@ export function MobileNavContent(props: MobileNavContentProps) {
                   </HStack>
                 </Flex>
                 <Stack alignItems="stretch" spacing="0">
-                  {siteConfig.header.links.map(
-                    ({ href, id, label, ...props }, i) => {
-                      return (
-                        <NavLink
-                          href={href || `/#${id}`}
-                          key={i}
-                          {...(props as any)}
-                        >
-                          {label}
-                        </NavLink>
-                      )
-                    }
-                  )}
+                  {siteConfig.header.links.map(({ href, id, label, subLinks, ...props }, i) => (
+                    <NavLink
+                      href={href || `/#${id}`}
+                      key={i}
+                      subLinks={subLinks}
+                      {...(props as any)}
+                    >
+                      {label}
+                    </NavLink>
+                  ))}
                 </Stack>
               </Box>
             </Flex>

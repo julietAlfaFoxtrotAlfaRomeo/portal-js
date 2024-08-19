@@ -55,8 +55,7 @@ const Login: NextPage = () => {
             </FormControl>
             <Button colorScheme="purple" w="full" mb={4}>Log in</Button>
             <Flex justify="space-between" w="full" mb={4}>
-              <Link color="purple.500" href="/forgot-password">Forgot password</Link>
-              <Link color="purple.500" href="/signup">Sign up</Link>
+              <Link color="purple.500" href="/registrasi">Sign up</Link>
             </Flex>
           </MotionBox>
         </PageTransition>

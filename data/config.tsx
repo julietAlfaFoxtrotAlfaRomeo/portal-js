@@ -4,7 +4,7 @@ import { Logo } from './logo'
 import { Logoo } from './logo-footer'
 const siteConfig = {
   logo: Logo,
-  Logoo: Logoo,
+  logoo: Logoo,
   seo: {
     title: 'Kementiran Perdagangan',
     description: 'Webpass',
@@ -28,8 +28,8 @@ const siteConfig = {
         id: 'dropdown',
         subLinks: [
           { label: 'Kuliner', href: '/katalog/kuliner', id: 'kuliner' },
-          { label: 'Fashion Muslim', href: 'katalog/fashion-muslim', id: 'fashion-muslim' },
-          { label: 'Produk Halal', href: 'katalog/produk-halal', id: 'produk-halal' },
+          { label: 'Fashion Muslim', href: '/katalog/fashion-muslim', id: 'fashion-muslim' },
+          { label: 'Produk Halal', href: '/katalog/produk-halal', id: 'produk-halal' },
         ],
       },
       {
@@ -66,18 +66,14 @@ const siteConfig = {
         label: 'Login',
         href: '/login',
         id: 'login',
+        variant: 'primary',
       },
     ],
   },
   footer: {
-    copyright: (
-      <>
-
-      </>
-    ),
     links: [
       {
-        href: '/home',
+        href: '/',
         label: 'Home',
         id: 'footer-home',
       },
@@ -87,9 +83,19 @@ const siteConfig = {
         id: 'footer-etalase',
       },
       {
-        href: '/kuliner',
+        href: '/katalog/kuliner',
         label: 'Kuliner',
         id: 'footer-kuliner',
+      },
+      {
+        href: '/katalog/fashion-muslim',
+        label: 'Fashion Muslim',
+        id: 'footer-fashion-muslim',
+      },
+      {
+        href: '/katalog/produk-halal',
+        label: 'Produk Halal',
+        id: 'footer-produk-halal',
       },
       {
         href: '/registrasi',
@@ -102,7 +108,7 @@ const siteConfig = {
         id: 'footer-publikasi',
       },
       {
-        href: '/pelaku-usaha',
+        href: '/PelakuUsaha',
         label: 'Pelaku Usaha',
         id: 'footer-pelaku-usaha',
       },
@@ -117,8 +123,8 @@ const siteConfig = {
         id: 'footer-faq',
       },
       {
-        href: '/contact-us',
-        label: 'Contact Us',
+        href: '/Contact-Us',
+        label: 'Contact-Us',
         id: 'footer-contact-us',
       },
       {
@@ -128,7 +134,6 @@ const siteConfig = {
       },
     ],
   },
-
   signup: {
     title: 'Start building with Webpass',
     features: [

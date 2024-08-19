@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <VStack align="start">
             <HStack>
-              <Box as={siteConfig.Logoo} height="50px" mb={5} />
+              <Box as={siteConfig.logoo} height="50px" mb={5} />
               <Text fontSize="lg" fontWeight="bold">ETALASE PRODUK UMKM</Text>
             </HStack>
             <Text>KEMENTRIAN PERDAGANGAN REPUBLIK INDONESIA</Text>

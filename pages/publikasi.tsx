@@ -4,10 +4,15 @@ import NextLink from "next/link";
 const Publikasi = () => {
     return (
         <Container maxW="container.xl" py={8} mt={20}>
-            <Heading as="h1" mb={6}>
+            <Heading
+                mb="10"
+                textAlign="center"
+                size="6xl"
+                data-aos="fade-up"
+            >
                 JADWAL KEGIATAN DAN PUBLIKASI
             </Heading>
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mb={10}>
                 <Box bg="gray.100" p={6} borderRadius="md" boxShadow="md">
                     <Heading as="h2" size="lg" mb={4}>
                         Kegiatan - Jadwal Pameran

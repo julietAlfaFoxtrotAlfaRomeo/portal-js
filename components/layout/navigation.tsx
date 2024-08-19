@@ -28,21 +28,20 @@ const Navigation: React.FC = () => {
     <HStack spacing="2" flexShrink={0}>
       {siteConfig.header.links.map(({ href, id, subLinks, ...props }, i) => {
         if (subLinks) {
-          // Render dropdown for links with subLinks
           return (
             <Menu key={i}>
               <MenuButton
                 as={NavLink}
                 aria-label={props.label}
                 isActive={!!(id && activeId === id)}
-                href={href} // Ensure href is not undefined
+                href={href}
               >
                 {props.label}
               </MenuButton>
               <MenuList>
                 {subLinks.map((subLink) => (
                   <MenuItem key={subLink.id}>
-                    <NavLink href={subLink.href || "#"}>{subLink.label}</NavLink>
+                    <NavLink href={subLink.href || "/katalog/kuiner"}>{subLink.label}</NavLink>
                   </MenuItem>
                 ))}
               </MenuList>

@@ -27,7 +27,7 @@ import {
   Highlights,
   HighlightsItem
 } from "components/highlights";
-import { ChakraLogo, NextjsLogo } from "components/logos";
+import { NextjsLogo } from "components/logos";
 import { SEO } from "components/seo/seo";
 import faq from "data/faq";
 import jadwal from "data/jadwal";
@@ -75,7 +75,7 @@ const Home: NextPage = () => {
 
 const HeroSection: React.FC = () => {
   return (
-    <Box position="relative" overflow="hidden" data-aos="fade-up">
+    <Box position="relative" overflow="hidden" mt={-2}>
       <BackgroundGradient height="100%" zIndex="-1" />
       <Container maxW="container.xl" pt={{ base: 10, lg: 20 }} pb="5">
         <Stack direction={{ base: "column", lg: "row" }} alignItems="center">
@@ -96,12 +96,12 @@ const HeroSection: React.FC = () => {
             }
           >
             <div data-aos="fade-up" data-aos-delay="750">
-              <HStack pt="4" pb="12" spacing="8">
-                <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
+              <HStack pt="6" pb="12" spacing="8">
+                <NextjsLogo height="58px" />
               </HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="/signup">
+                <ButtonLink colorScheme="primary" size="lg" href="/registrasi">
                   Daftar
                 </ButtonLink>
                 <ButtonLink
@@ -208,7 +208,7 @@ const HighlightsSection = () => {
 
   return (
     <Highlights data-aos="fade-up" data-aos-delay="200">
-      <HighlightsItem colSpan={[1, 2, 3]}>
+      <HighlightsItem colSpan={[1, 2, 3]} border="none">
         <VStack alignItems="center" spacing="8">
           <Heading
             lineHeight="short"
@@ -235,10 +235,11 @@ const HighlightsSection = () => {
           </HStack>
           <Box
             display="flex"
-            justifyContent={{ base: "flex-start", md: "flex-end" }}
+            justifyContent={{ base: "center", md: "flex-end" }} // Tengah di perangkat mobile dan kanan di desktop
+            alignItems="center" // Menyelaraskan tombol secara vertikal
             gap="3"
             width="100%"
-            mr={{ base: "10", md: "0" }}
+            mr={{ base: "0", md: "0" }} // Menghilangkan margin kanan di perangkat mobile
             data-aos="zoom-in"
           >
             <ButtonLink colorScheme="primary" size={{ base: "sm", md: "lg" }} href="/berita/2">
@@ -248,9 +249,10 @@ const HighlightsSection = () => {
               List Berita
             </ButtonLink>
           </Box>
+
         </VStack>
       </HighlightsItem>
-      <HighlightsItem colSpan={[1, 2, 3]} data-aos="fade-up" data-aos-delay="200" textAlign="center">
+      <HighlightsItem colSpan={[1, 2, 3]} data-aos="fade-up" data-aos-delay="200" textAlign="center" border="none">
         <Box width="100%" p={4} textAlign="center">
           <Heading
             lineHeight="short"
@@ -309,8 +311,6 @@ const HighlightsSection = () => {
           </Wrap>
         </Box>
       </HighlightsItem>
-
-
     </Highlights>
   );
 };
@@ -319,8 +319,8 @@ const HighlightsSection = () => {
 const FeaturesSection = () => {
   useEffect(() => {
     AOS.init({
-      duration: 500, // Durasi animasi
-      offset: 200, // Offset (dalam px) dari titik pemicu asli
+      duration: 500,
+      offset: 200,
     });
   }, []);
 

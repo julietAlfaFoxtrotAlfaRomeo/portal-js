@@ -52,7 +52,14 @@ const PelakuUsaha: NextPage = () => {
 
     return (
         <Container maxW={{ base: 'full', md: 'container.xl' }} py="8" mt="20">
-            <Heading mb="8">Pencarian Pelaku Usaha</Heading>
+            <Heading
+                mb="6"
+                textAlign="center"
+                size="6xl"
+                data-aos="fade-up"
+            >
+                Pencarian Pelaku Usaha
+            </Heading>
             <Stack spacing="6" mb="8">
                 <FormControl id="search">
                     <FormLabel>Pencarian Spesifik</FormLabel>

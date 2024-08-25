@@ -1,67 +1,61 @@
-import { Box, Button, Center, Flex, FormControl, FormLabel, Heading, IconButton, Input, InputGroup, InputRightElement, Link } from '@chakra-ui/react';
-import { BackgroundGradient } from 'components/gradients/background-gradient';
-import { PageTransition } from 'components/motion/page-transition';
-import { Section } from 'components/section';
-import { motion } from 'framer-motion';
-import { NextPage } from 'next';
+import { Box, Button, FormControl, FormLabel, Input, Stack, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const MotionBox = motion(Box);
+export default function LoginPage() {
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
-const Login: NextPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
 
-  const handlePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: identifier, password }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message);
+      }
+
+      const data = await response.json();
+      router.push(data.redirectUrl, undefined, { shallow: true });
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   return (
-    <Section height="calc(100vh - 200px)" innerWidth="container.sm" mt="10">
-      <BackgroundGradient zIndex="-1" />
-
-      <Center height="100%" pt="20">
-        <PageTransition width="100%">
-          <MotionBox
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            bg="white"
-            p={8}
-            rounded="md"
-            shadow="md"
-            maxW="md"
-            w="full"
-          >
-            <Flex direction="column" align="center" mb={8}>
-              <Heading mb={2}>Log in</Heading>
-            </Flex>
-            <FormControl mb={4}>
-              <FormLabel>Email</FormLabel>
-              <Input placeholder="Email" type="email" />
-            </FormControl>
-            <FormControl mb={4}>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input placeholder="Password" type={showPassword ? "text" : "password"} />
-                <InputRightElement>
-                  <IconButton
-                    aria-label="Toggle Password Visibility"
-                    icon={showPassword ? <FaEyeSlash /> : <FaEye />}
-                    onClick={handlePasswordVisibility}
-                  />
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
-            <Button colorScheme="purple" w="full" mb={4}>Log in</Button>
-            <Flex justify="space-between" w="full" mb={4}>
-              <Link color="purple.500" href="/registrasi">Sign up</Link>
-            </Flex>
-          </MotionBox>
-        </PageTransition>
-      </Center>
-    </Section>
+    <Box maxW="md" mx="auto" mt="20" mb={20}>
+      <Stack mt={20} spacing={4} as="form" onSubmit={handleLogin}>
+        <FormControl>
+          <FormLabel>Email atau Username</FormLabel>
+          <Input
+            type="text"
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+            required
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </FormControl>
+        {error && <Text color="red.500">{error}</Text>}
+        <Button type="submit" colorScheme="teal">
+          Login
+        </Button>
+      </Stack>
+    </Box>
   );
-};
-
-export default Login;
+}

@@ -1,0 +1,42 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Define the Role enum
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+// Define the User model
+model User {
+  id                Int      @id @default(autoincrement())
+  username          String? @unique
+  businessName      String?
+  pirtNumber        String?
+  responsiblePerson String?
+  nik               String?
+  businessAddress   String?
+  netWorth          String?
+  businessType      String?
+  province          String?
+  city              String?
+  postalCode        String?
+  phone             String?
+  mobile            String?
+  website           String?
+  email             String   @unique
+  password          String
+  role              Role     @default(USER)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt @default(now()) // Tambahkan nilai default
+}
+

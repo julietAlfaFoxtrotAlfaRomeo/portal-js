@@ -1,4 +1,5 @@
 import { HStack, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
+import axios from 'axios';
 import { MobileNavButton, MobileNavContent } from "components/mobile-nav";
 import { NavLink } from "components/nav-link";
 import siteConfig from "data/config";
@@ -23,6 +24,28 @@ const Navigation: React.FC = () => {
   React.useEffect(() => {
     mobileNavBtnRef.current?.focus();
   }, [mobileNav.isOpen]);
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    axios.get('/api/check-auth')
+      .then(response => {
+        if (response.status === 200 && response.data.message === 'Sudah login') {
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleAuthAction = () => {
+    if (isLoggedIn) {
+      router.push('/user'); // Navigate to dashboard if logged in
+    } else {
+      router.push('/login'); // Navigate to login page if not logged in
+    }
+  };
 
   return (
     <HStack spacing="2" flexShrink={0}>
@@ -65,6 +88,15 @@ const Navigation: React.FC = () => {
           </NavLink>
         );
       })}
+
+      <NavLink
+        display={["none", null, "block"]}
+        onClick={handleAuthAction}
+        key="auth"
+        variant="primary"
+      >
+        {isLoggedIn ? "Dashboard" : "Login"}
+      </NavLink>
 
       <MobileNavButton
         ref={mobileNavBtnRef}

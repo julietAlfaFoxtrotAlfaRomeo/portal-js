@@ -6,12 +6,12 @@ const nextConfig = {
       test: /\.svg$/,
       use: [
         {
-          loader: '@svgr/webpack',
+          loader: "@svgr/webpack",
           options: {
             svgoConfig: {
               plugins: [
                 {
-                  name: 'removeViewBox',
+                  name: "removeViewBox",
                   active: false,
                 },
               ],
@@ -19,9 +19,10 @@ const nextConfig = {
           },
         },
       ],
-    })
-    return config
-  },
-}
+    });
 
-export default nextConfig
+    return config;
+  },
+};
+
+export default nextConfig;

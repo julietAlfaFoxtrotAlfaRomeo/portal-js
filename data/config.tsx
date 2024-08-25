@@ -34,7 +34,7 @@ const siteConfig = {
       },
       {
         label: 'Registrasi',
-        href: '/registrasi',
+        href: '/signup',
         id: 'registrasi',
       },
       {
@@ -61,12 +61,6 @@ const siteConfig = {
         label: 'Contact Us',
         href: '/Contact-Us',
         id: 'contact-us',
-      },
-      {
-        label: 'Login',
-        href: '/login',
-        id: 'login',
-        variant: 'primary',
       },
     ],
   },
@@ -126,11 +120,6 @@ const siteConfig = {
         href: '/Contact-Us',
         label: 'Contact-Us',
         id: 'footer-contact-us',
-      },
-      {
-        href: '/login',
-        label: 'Login',
-        id: 'footer-login',
       },
     ],
   },

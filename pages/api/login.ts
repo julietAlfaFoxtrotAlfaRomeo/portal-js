@@ -25,37 +25,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         user = await prisma.user.findUnique({
           where: { email },
         });
-        if (user && user.role === 'SUPER_ADMIN') {
-          role = 'super_admin';
-        } else if (user && user.role === 'ADMIN') {
-          role = 'admin';
-        }
       } else {
         // Coba temukan user berdasarkan username
         user = await prisma.user.findUnique({
           where: { username: email },
         });
-        if (user && user.role === 'SUPER_ADMIN') {
+      }
+
+      if (user) {
+        if (user.role === 'SUPER_ADMIN') {
           role = 'super_admin';
-        } else if (user && user.role === 'ADMIN') {
+        } else if (user.role === 'ADMIN') {
           role = 'admin';
         }
       }
 
-      if (!user) {
-        return res.status(401).json({ message: 'User tidak ditemukan' });
-      }
-
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-
-      if (!isPasswordValid) {
-        return res.status(401).json({ message: 'Password tidak valid' });
+      if (!user || !await bcrypt.compare(password, user.password)) {
+        return res.status(401).json({ message: 'Email/Username atau password tidak valid' });
       }
 
       // Set session cookie
       const cookie = serialize('user-session', JSON.stringify({ userId: user.id, role }), {
         path: '/',
         httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Only set to true in production
+        sameSite: 'strict', // Adds an additional layer of security
         maxAge: 60 * 60, // Sesi bertahan selama 1 jam
       });
 

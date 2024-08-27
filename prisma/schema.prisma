@@ -1,42 +1,87 @@
-// prisma/schema.prisma
+// schema.prisma
 
+// Data Source Configuration
+datasource db {
+  provider = "mysql" // Ganti dengan provider yang Anda gunakan
+  url      = env("DATABASE_URL")
+}
+
+// Generator Configuration
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+// Models
+model Category {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  businessGroup BusinessGroup @default(non_industri)
+  products     Product[]
 }
 
-// Define the Role enum
-enum Role {
+
+model Product {
+  id            Int       @id @default(autoincrement())
+  name          String
+  description   String?
+  price         Float
+  stock         Int
+  categoryId    Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  username      String
+  email         String
+  businessName  String
+  status        ProductStatus @default(draft)
+  photoUrl      String?
+  category      Category  @relation(fields: [categoryId], references: [id])
+  reviews       Review[]
+}
+
+model Review {
+  id          Int       @id @default(autoincrement())
+  productId   Int
+  reviewText  String?
+  createdAt   DateTime  @default(now())
+  rating      Int?
+  product     Product   @relation(fields: [productId], references: [id])
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  username        String  @unique
+  businessName    String  @unique
+  pirtNumber      String
+  responsiblePerson String
+  nik             String  @unique
+  businessAddress String
+  netWorth        String
+  businessType    String
+  province        String
+  city            String
+  postalCode      String
+  phone           String
+  mobile          String  
+  website         String
+  email           String   @unique
+  password        String
+  createdAt       DateTime @default(now())
+  role            UserRole @default(USER)
+}
+
+enum ProductStatus {
+  draft
+  review
+  approved
+}
+
+enum UserRole {
   USER
   ADMIN
   SUPER_ADMIN
 }
 
-// Define the User model
-model User {
-  id                Int      @id @default(autoincrement())
-  username          String? @unique
-  businessName      String?
-  pirtNumber        String?
-  responsiblePerson String?
-  nik               String?
-  businessAddress   String?
-  netWorth          String?
-  businessType      String?
-  province          String?
-  city              String?
-  postalCode        String?
-  phone             String?
-  mobile            String?
-  website           String?
-  email             String   @unique
-  password          String
-  role              Role     @default(USER)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt @default(now()) // Tambahkan nilai default
+enum BusinessGroup {
+  non_industri
+  industri
 }
-

@@ -36,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         email,
         password,
         role,
+        username, // Menambahkan username
       } = req.body;
 
       try {
@@ -58,6 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             website,
             email,
             password: hashedPassword,
+            username, // Menambahkan username
           },
         });
 

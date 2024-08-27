@@ -1,7 +1,7 @@
 import { parse } from 'cookie';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const middleware = (req: NextRequest) => {
+export function middleware(req: NextRequest) {
   const cookie = req.headers.get('cookie');
   
   if (cookie) {
@@ -23,3 +23,4 @@ export const middleware = (req: NextRequest) => {
   // Redirect ke halaman login jika tidak terautentikasi atau bukan admin
   return NextResponse.redirect(new URL('/login', req.url));
 }
+

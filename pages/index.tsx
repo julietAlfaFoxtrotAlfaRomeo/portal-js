@@ -44,7 +44,7 @@ import {
   FiThumbsUp,
 } from "react-icons/fi";
 import { MdArrowForward } from "react-icons/md";
-import Etalase from "./etalasehome";
+import Etalase from "./EtalaseHome";
 
 
 

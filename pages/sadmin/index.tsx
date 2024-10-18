@@ -78,37 +78,46 @@ const SuperAdminDashboard = () => {
         );
     }
 
-    // Fungsi untuk mengubah data sesuai dengan rentang waktu yang dipilih
-    const transformData = (data: User[]) => {
-        if (timeRange === 'daily') {
-            return data.map(user => ({
-                date: user.createdAt.split('T')[0],
-                count: 1,
-            }));
-        } else if (timeRange === 'hourly') {
-            return data.map(user => ({
-                hour: new Date(user.createdAt).getHours(),
-                count: 1,
-            }));
-        } else if (timeRange === 'yearly') {
-            return data.map(user => ({
-                year: new Date(user.createdAt).getFullYear(),
-                count: 1,
-            }));
-        } else {
-            // Default to monthly
-            return data.reduce((acc, user) => {
-                const month = new Date(user.createdAt).toLocaleString('default', { month: 'short', year: 'numeric' });
-                const existing = acc.find(item => item.month === month);
-                if (existing) {
-                    existing.count += 1;
-                } else {
-                    acc.push({ month, count: 1 });
-                }
-                return acc;
-            }, []);
-        }
-    };
+
+interface TransformedData {
+    month?: string;
+    date?: string;
+    hour?: number;
+    year?: number;
+    count: number;
+}
+
+const transformData = (data: User[]): TransformedData[] => {
+    if (timeRange === 'daily') {
+        return data.map(user => ({
+            date: user.createdAt.split('T')[0],
+            count: 1,
+        }));
+    } else if (timeRange === 'hourly') {
+        return data.map(user => ({
+            hour: new Date(user.createdAt).getHours(),
+            count: 1,
+        }));
+    } else if (timeRange === 'yearly') {
+        return data.map(user => ({
+            year: new Date(user.createdAt).getFullYear(),
+            count: 1,
+        }));
+    } else {
+        // Default to monthly
+        return data.reduce<TransformedData[]>((acc, user) => {
+            const month = new Date(user.createdAt).toLocaleString('default', { month: 'short', year: 'numeric' });
+            const existing = acc.find(item => item.month === month);
+            if (existing) {
+                existing.count += 1;
+            } else {
+                acc.push({ month, count: 1 });
+            }
+            return acc;
+        }, []);
+    }
+};
+
 
     const registrationData = transformData(users);
 

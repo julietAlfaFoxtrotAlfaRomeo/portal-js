@@ -85,7 +85,7 @@ const Signup = () => {
   return (
     <Box maxW="700" mx="auto" mt={20} mb={20} p={6} borderWidth={1} borderRadius="lg" boxShadow="lg">
       <Heading as="h1" size="LG" textAlign="center" mb={6}>
-        MAS SIBUK GAK MAS
+        Registrasi
       </Heading>
       <Formik
         initialValues={initialValues}

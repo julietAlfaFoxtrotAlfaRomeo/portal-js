@@ -61,7 +61,7 @@ model User {
   city            String
   postalCode      String
   phone           String
-  mobile          String  
+  mobile          String
   website         String
   email           String   @unique
   password        String

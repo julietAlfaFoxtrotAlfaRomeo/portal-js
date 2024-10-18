@@ -26,12 +26,15 @@ const Navigation: React.FC = () => {
   }, [mobileNav.isOpen]);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [userRole, setUserRole] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    // Cek apakah user sudah login dan dapatkan role mereka
     axios.get('/api/check-auth')
       .then(response => {
         if (response.status === 200 && response.data.message === 'Sudah login') {
           setIsLoggedIn(true);
+          setUserRole(response.data.role); // Dapatkan role dari respons API
         }
       })
       .catch(error => {
@@ -41,9 +44,16 @@ const Navigation: React.FC = () => {
 
   const handleAuthAction = () => {
     if (isLoggedIn) {
-      router.push('/user'); // Navigate to dashboard if logged in
+      // Redirect sesuai dengan role
+      if (userRole === 'admin') {
+        router.push('/admin');
+      } else if (userRole === 'super_admin') {
+        router.push('/sadmin');
+      } else {
+        router.push('/user'); // Default ke halaman user
+      }
     } else {
-      router.push('/login'); // Navigate to login page if not logged in
+      router.push('/login'); // Jika belum login, arahkan ke halaman login
     }
   };
 

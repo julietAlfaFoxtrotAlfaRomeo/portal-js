@@ -15,8 +15,17 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
+
+
+interface Category {
+    id: number;
+    name: string;
+    businessGroup: string;
+}
+
 const AdminCategories = () => {
-    const [categories, setCategories] = useState([]);
+    // Berikan tipe Category[] untuk state categories
+    const [categories, setCategories] = useState<Category[]>([]);
     const toast = useToast();
 
     useEffect(() => {
